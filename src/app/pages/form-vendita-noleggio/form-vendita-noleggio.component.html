@@ -21,7 +21,7 @@
         </div>
         <div class="labelCombo">
           <label>Modello*</label>
-          <input type="text" pInputText placeholder="Inserisci il modello" [ngModel]="modello" class="p-inputtext-lg input"/>
+          <input type="text" pInputText placeholder="Inserisci il modello" [ngModel]="model" class="p-inputtext-lg input"/>
         </div>
         <div class="labelCombo">
           <label>Colore*</label>
@@ -60,7 +60,7 @@
         </div>
       </div>
       <div class="submit">
-        <button pButton  label="Invia" class="button"></button>
+        <button pButton  label="Invia" class="button" (click)="send()"></button>
       </div>
     </div>
 </div>

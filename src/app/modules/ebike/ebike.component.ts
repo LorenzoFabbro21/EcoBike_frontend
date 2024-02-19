@@ -19,12 +19,12 @@ export class EbikeComponent {
   constructor ( private router: Router) {
    this.bicicletta = {
       id: 1,
-      modello: 'RX1-Sport',
-      marca: 'Olmo',
-      colore: 'Rosso e bianco',
-      taglia: Taglia.TagliaS,
-      tipologia: 'Mountain Bike',
-      immagini: 'ebike.jpg'
+      model: 'RX1-Sport',
+      brand: 'Olmo',
+      color: 'Rosso e bianco',
+      size: Taglia.TagliaS,
+      type: 'Mountain Bike',
+      img: 'ebike.jpg'
     };
   }
 

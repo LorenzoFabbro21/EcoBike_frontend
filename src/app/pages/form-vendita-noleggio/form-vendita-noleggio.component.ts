@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { LoggedUser } from 'src/app/classes/user';
 import { Taglia } from 'src/app/enum/tagliaEnum';
+import { adRent } from 'src/app/interfaces/adRent';
+import { Bicicletta } from 'src/app/interfaces/bicicletta';
+import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
 import { UserLoggedService } from 'src/app/services/user-logged.service';
 
 interface AutoCompleteCompleteEvent {
@@ -28,12 +31,12 @@ export class FormVenditaNoleggioComponent {
   tagliaList: any[]= [];
   colore?:string;
   marca?:string;
-  modello?:string;
+  model?:string;
   tipologia?:string;
   prezzo?:number;
   misure?:string;
 
-  constructor ( private userService: UserLoggedService) {
+  constructor ( private userService: UserLoggedService, private ebService: EcobikeApiService) {
     if ( userService.userLogged ) {
       this.userLogged = userService.userLogged;
     }
@@ -61,5 +64,38 @@ export class FormVenditaNoleggioComponent {
     for(let file of event.files) {
         this.uploadedFiles.push(file);
     }
-}
+  }
+
+  send () {
+    let idBike: number;
+    let bike: Bicicletta;
+    bike = {
+      model: this.model,
+      brand: this.marca,
+      color: this.colore,
+      size: this.tagliaValue,
+      type: this.tipologia,
+      measure: this.misure,
+      img: this.uploadedFiles[0]
+    }
+    this.ebService.new_bike(bike).subscribe({
+      next: (response:Bicicletta) => {
+        if( response && response.id) {
+          idBike = response.id;
+
+          let adRent: adRent;
+          adRent = {
+          price:this.prezzo,
+          idBike:idBike
+          }
+          this.ebService.new_noleggio(adRent).subscribe({
+            next: (response:adRent) => {
+              console.log(response);
+          }
+          });
+        }
+      }
+    });
+  }
+
 }

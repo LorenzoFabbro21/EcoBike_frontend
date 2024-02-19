@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Bicicletta } from '../interfaces/bicicletta';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, retry, throwError } from 'rxjs';
+import { adRent } from '../interfaces/adRent';
+import { adSell } from '../interfaces/adSell';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class EcobikeApiService {
 
   constructor(protected httpClient: HttpClient) { }
 
-  url="http://localhost:53450/EcoBike"
+  url="http://localhost:8080/api"
 
 
   /**
@@ -20,7 +22,7 @@ export class EcobikeApiService {
  * Endpoint Rest: bicicletta/noleggio
  */
    public elenco_bici_noleggio (): Observable<Bicicletta[]> {
-    return this.httpClient.get<Bicicletta[]>(`${this.url}/bicicletta/noleggio`, {
+    return this.httpClient.get<Bicicletta[]>(`${this.url}/adrent/bikes`, {
        headers: new HttpHeaders({
          'Access-Control-Allow-Origin': '*'
        })
@@ -32,10 +34,10 @@ export class EcobikeApiService {
     /**
  * Restituisce l'elenco delle biciclette a noleggio
  *
- * Endpoint Rest: bicicletta/vendita
+ * Endpoint Rest: adsell/bikes
  */
     public elenco_bici_vendita (): Observable<Bicicletta[]> {
-      return this.httpClient.get<Bicicletta[]>(`${this.url}/bicicletta/vendita`, {
+      return this.httpClient.get<Bicicletta[]>(`${this.url}/adsell/bikes`, {
          headers: new HttpHeaders({
            'Access-Control-Allow-Origin': '*'
          })
@@ -46,16 +48,63 @@ export class EcobikeApiService {
 /**
  * Restitusice la bicicletta selezionata
  *
- * Endpoint Rest: bicicletta/{bikeNo}
+ * Endpoint Rest: bike/{bikeNo}
  */
   public get_bicicletta (bikeNo: number): Observable<Bicicletta> {
-    return  this.httpClient.get<Bicicletta>(`${this.url}/bicicletta/${bikeNo}`, {
+    return  this.httpClient.get<Bicicletta>(`${this.url}/bike/${bikeNo}`, {
         headers: new HttpHeaders({
           'Access-Control-Allow-Origin': '*'
         })
       }).pipe(retry(0), catchError(this.handleError)
       );
   }
+
+/**
+ * Inserisce una nuova bicicletta
+ *
+ * Endpoint Rest: bike
+ */
+  public new_bike(bike: Bicicletta | any){
+
+    return this.httpClient.post<Bicicletta>(`${this.url}/bike`, bike, {
+        headers: new HttpHeaders({
+          'Access-Control-Allow-Origin': '*'
+        })
+      }).pipe(retry(0), catchError(this.handleError)
+      );
+  }
+
+/**
+ * Inserisce una nuovo noleggio
+ *
+ * Endpoint Rest: bike
+ */
+  public new_noleggio(adRent: adRent | any){
+
+    return this.httpClient.post<adRent>(`${this.url}/adrent`, adRent, {
+        headers: new HttpHeaders({
+          'Access-Control-Allow-Origin': '*'
+        })
+      }).pipe(retry(0), catchError(this.handleError)
+      );
+  }
+
+  /**
+ * Inserisce una nuovo noleggio
+ *
+ * Endpoint Rest: bike
+ */
+  public new_vendita(adSell: adSell | any){
+
+    return this.httpClient.post<adSell>(`${this.url}/adsell`, adSell, {
+        headers: new HttpHeaders({
+          'Access-Control-Allow-Origin': '*'
+        })
+      }).pipe(retry(0), catchError(this.handleError)
+      );
+  }
+  
+
 
 
  

@@ -30,10 +30,10 @@ export class NoleggioComponent {
 
   constructor () {
 
-    this.bikesNoleggio= [
+    /* this.bikesNoleggio= [
       {
       id: 1,
-      modello: 'RX1-Sport',
+      model: 'RX1-Sport',
       marca: 'Olmo',
       colore: 'Rosso e bianco',
       taglia: Taglia.TagliaS,
@@ -42,7 +42,7 @@ export class NoleggioComponent {
       },
       {
         id: 2,
-        modello: 'CV5-Sport',
+        model: 'CV5-Sport',
         marca: 'Thor',
         colore: 'Rosso e nero',
         taglia: Taglia.TagliaM,
@@ -51,7 +51,7 @@ export class NoleggioComponent {
         },
         {
           id: 3,
-          modello: 'BN8-Trial',
+          model: 'BN8-Trial',
           marca: 'Prova',
           colore: 'Rosso e bianco',
           taglia: Taglia.TagliaS,
@@ -60,7 +60,7 @@ export class NoleggioComponent {
           },
           {
             id: 4,
-            modello: 'TopModel',
+            model: 'TopModel',
             marca: 'Brabus',
             colore: 'Verde',
             taglia: Taglia.TagliaL,
@@ -69,7 +69,7 @@ export class NoleggioComponent {
             },
             {
               id: 1,
-              modello: 'RX1-Sport',
+              model: 'RX1-Sport',
               marca: 'Olmo',
               colore: 'Rosso e bianco',
               taglia: Taglia.TagliaS,
@@ -78,7 +78,7 @@ export class NoleggioComponent {
               },
               {
                 id: 2,
-                modello: 'CV5-Sport',
+                model: 'CV5-Sport',
                 marca: 'Thor',
                 colore: 'Rosso e nero',
                 taglia: Taglia.TagliaM,
@@ -87,7 +87,7 @@ export class NoleggioComponent {
                 },
                 {
                   id: 3,
-                  modello: 'BN8-Trial',
+                  model: 'BN8-Trial',
                   marca: 'Prova',
                   colore: 'Rosso e bianco',
                   taglia: Taglia.TagliaS,
@@ -96,7 +96,7 @@ export class NoleggioComponent {
                   },
                   {
                     id: 4,
-                    modello: 'TopModel',
+                    model: 'TopModel',
                     marca: 'Brabus',
                     colore: 'Verde',
                     taglia: Taglia.TagliaL,
@@ -105,7 +105,7 @@ export class NoleggioComponent {
                     },
                     {
                       id: 1,
-                      modello: 'RX1-Sport',
+                      model: 'RX1-Sport',
                       marca: 'Olmo',
                       colore: 'Rosso e bianco',
                       taglia: Taglia.TagliaS,
@@ -114,7 +114,7 @@ export class NoleggioComponent {
                       },
                       {
                         id: 2,
-                        modello: 'CV5-Sport',
+                        model: 'CV5-Sport',
                         marca: 'Thor',
                         colore: 'Rosso e nero',
                         taglia: Taglia.TagliaM,
@@ -123,7 +123,7 @@ export class NoleggioComponent {
                         },
                         {
                           id: 3,
-                          modello: 'BN8-Trial',
+                          model: 'BN8-Trial',
                           marca: 'Prova',
                           colore: 'Rosso e bianco',
                           taglia: Taglia.TagliaS,
@@ -132,14 +132,14 @@ export class NoleggioComponent {
                           },
                           {
                             id: 4,
-                            modello: 'TopModel',
+                            model: 'TopModel',
                             marca: 'Brabus',
                             colore: 'Verde',
                             taglia: Taglia.TagliaL,
                             tipologia: 'Mountain Bike',
                             immagini: 'ebike.jpg'
                             }
-    ];
+    ]; */
 
 
     this.marcaList = [

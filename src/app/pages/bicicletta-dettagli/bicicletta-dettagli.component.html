@@ -1,12 +1,12 @@
 <div>
     <div class="product">
-        <img *ngIf="bicicletta && bicicletta.immagini !== undefined" alt="Card" src="../../../assets/images/{{bicicletta.immagini}}" class="imagePrincipale"/>
+        <img *ngIf="bicicletta && bicicletta.img !== undefined" alt="Card" src="../../../assets/images/{{bicicletta.img}}" class="imagePrincipale"/>
         <div *ngIf="bicicletta" class="details">
-            <h1 class="marca">{{bicicletta.marca}}</h1>
-            <h2 class="modello">{{bicicletta.modello}}</h2>
-            <div class="coloreTaglia">
-                <label>Colore: {{bicicletta.colore}}</label>
-                <label>Taglia: {{bicicletta.taglia}}</label>
+            <h1 class="marca">{{bicicletta.brand}}</h1>
+            <h2 class="model">{{bicicletta.model}}</h2>
+            <div class="Taglia">
+                <label>Colore: {{bicicletta.color}}</label>
+                <label>Taglia: {{bicicletta.size}}</label>
             </div>
             <br>
             <h1 class="prezzo">{{prezzo}} €</h1>
@@ -14,9 +14,9 @@
             <br>
             <br>
             <div class="btn">
-                <div class="colore">
-                    <label>Colore</label>
-                    <h2 class="coloreText">{{bicicletta.colore}}</h2>
+                <div class="">
+                    <label></label>
+                    <h2 class="Text">{{bicicletta.color}}</h2>
                 </div>
                 <div class="showMore">
                     <p-button  label="Prenota" class="showMoreBtn" (onClick)="prenota()"></p-button>
@@ -38,9 +38,9 @@
     <div class="accordion">
         <p-accordion>
             <p-accordionTab header="Dettagli">
-                <div *ngIf="bicicletta" class="coloreTaglia">
-                    <label>Colore: {{bicicletta.colore}}</label>
-                    <label>Taglia: {{bicicletta.taglia}}</label>
+                <div *ngIf="bicicletta" class="Taglia">
+                    <label>Colore: {{bicicletta.color}}</label>
+                    <label>Taglia: {{bicicletta.size}}</label>
                 </div>
             </p-accordionTab>
             <p-accordionTab header="Misure">

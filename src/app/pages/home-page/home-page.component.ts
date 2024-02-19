@@ -1,6 +1,8 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Taglia } from 'src/app/enum/tagliaEnum';
 import { Bicicletta } from 'src/app/interfaces/bicicletta';
+import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
 
 @Component({
   selector: 'app-home-page',
@@ -11,11 +13,39 @@ export class HomePageComponent {
   bikesNoleggio: Bicicletta[] = [];
   bikesVendita: Bicicletta[] = [];
 
-  constructor () {
-    this.bikesNoleggio= [
+  constructor (private ebService: EcobikeApiService) {
+
+
+    this.ebService.elenco_bici_noleggio().subscribe({
+      next: (response:Bicicletta[]) => {
+
+        if (response != null) {
+          this.bikesNoleggio= response;
+        }
+      }
+    });
+
+    this.ebService.elenco_bici_noleggio().subscribe({
+      next: (response:Bicicletta[]) => {
+
+        if (response != null) {
+          this.bikesNoleggio= response;
+        }
+      }
+    });
+
+    this.ebService.elenco_bici_vendita().subscribe({
+      next: (response:Bicicletta[]) => {
+
+        if (response != null) {
+          this.bikesVendita= response;
+        }
+      }
+    });
+    /* this.bikesNoleggio= [
       {
       id: 1,
-      modello: 'RX1-Sport',
+      model: 'RX1-Sport',
       marca: 'Olmo',
       colore: 'Rosso e bianco',
       taglia: Taglia.TagliaS,
@@ -24,7 +54,7 @@ export class HomePageComponent {
       },
       {
         id: 2,
-        modello: 'CV5-Sport',
+        model: 'CV5-Sport',
         marca: 'Thor',
         colore: 'Rosso e nero',
         taglia: Taglia.TagliaM,
@@ -33,7 +63,7 @@ export class HomePageComponent {
         },
         {
           id: 3,
-          modello: 'BN8-Trial',
+          model: 'BN8-Trial',
           marca: 'Prova',
           colore: 'Rosso e bianco',
           taglia: Taglia.TagliaS,
@@ -42,19 +72,25 @@ export class HomePageComponent {
           },
           {
             id: 4,
-            modello: 'TopModel',
+            model: 'TopModel',
             marca: 'Brabus',
             colore: 'Verde',
             taglia: Taglia.TagliaL,
             tipologia: 'Mountain Bike',
             immagini: 'ebike.jpg'
             }
-    ];
+    ]; */
 
-    this.bikesVendita= [
+
+
+
+
+
+
+    /* this.bikesVendita= [
       {
       id: 1,
-      modello: 'RX1-Sport',
+      model: 'RX1-Sport',
       marca: 'Olmo',
       colore: 'Rosso e bianco',
       taglia: Taglia.TagliaS,
@@ -63,7 +99,7 @@ export class HomePageComponent {
       },
       {
         id: 2,
-        modello: 'CV5-Sport',
+        model: 'CV5-Sport',
         marca: 'Thor',
         colore: 'Rosso e nero',
         taglia: Taglia.TagliaM,
@@ -72,7 +108,7 @@ export class HomePageComponent {
         },
         {
           id: 3,
-          modello: 'BN8-Trial',
+          model: 'BN8-Trial',
           marca: 'Prova',
           colore: 'Rosso e bianco',
           taglia: Taglia.TagliaS,
@@ -81,7 +117,7 @@ export class HomePageComponent {
           },
           {
             id: 4,
-            modello: 'TopModel',
+            model: 'TopModel',
             marca: 'Brabus',
             colore: 'Verde',
             taglia: Taglia.TagliaL,
@@ -90,7 +126,7 @@ export class HomePageComponent {
             },
             {
               id: 5,
-              modello: 'Prova5',
+              model: 'Prova5',
               marca: 'Ciao',
               colore: 'Verde',
               taglia: Taglia.TagliaL,
@@ -98,6 +134,6 @@ export class HomePageComponent {
               immagini: 'ebike.jpg'
               }
         ];
-  
+   */
   }
 }
