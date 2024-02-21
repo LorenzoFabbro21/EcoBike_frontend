@@ -73,7 +73,7 @@ export class FormVenditaNoleggioComponent {
       model: this.model,
       brand: this.marca,
       color: this.colore,
-      size: this.tagliaValue,
+      size: Taglia.TagliaL,
       type: this.tipologia,
       measure: this.misure,
       img: this.uploadedFiles[0]

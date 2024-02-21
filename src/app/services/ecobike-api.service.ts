@@ -22,12 +22,7 @@ export class EcobikeApiService {
  * Endpoint Rest: bicicletta/noleggio
  */
    public elenco_bici_noleggio (): Observable<Bicicletta[]> {
-    return this.httpClient.get<Bicicletta[]>(`${this.url}/adrent/bikes`, {
-       headers: new HttpHeaders({
-         'Access-Control-Allow-Origin': '*'
-       })
-     }).pipe(retry(0), catchError(this.handleError)
-       );
+    return this.httpClient.get<Bicicletta[]>(`${this.url}/adrent/bikes`);
   }
 
 
@@ -37,12 +32,7 @@ export class EcobikeApiService {
  * Endpoint Rest: adsell/bikes
  */
     public elenco_bici_vendita (): Observable<Bicicletta[]> {
-      return this.httpClient.get<Bicicletta[]>(`${this.url}/adsell/bikes`, {
-         headers: new HttpHeaders({
-           'Access-Control-Allow-Origin': '*'
-         })
-       }).pipe(retry(0), catchError(this.handleError)
-         );
+      return this.httpClient.get<Bicicletta[]>(`${this.url}/adsell/bikes`);
     }
 
 /**
@@ -51,12 +41,7 @@ export class EcobikeApiService {
  * Endpoint Rest: bike/{bikeNo}
  */
   public get_bicicletta (bikeNo: number): Observable<Bicicletta> {
-    return  this.httpClient.get<Bicicletta>(`${this.url}/bike/${bikeNo}`, {
-        headers: new HttpHeaders({
-          'Access-Control-Allow-Origin': '*'
-        })
-      }).pipe(retry(0), catchError(this.handleError)
-      );
+    return  this.httpClient.get<Bicicletta>(`${this.url}/bike/${bikeNo}`);
   }
 
 /**
