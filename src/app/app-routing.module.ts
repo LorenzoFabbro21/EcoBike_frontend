@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { NoleggioComponent } from './pages/noleggio/noleggio.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { VenditaComponent } from './pages/vendita/vendita.component';
-import { FormVenditaNoleggioComponent } from './pages/form-vendita-noleggio/form-vendita-noleggio.component';
+import { FormNoleggioComponent } from './pages/form-noleggio/form-noleggio.component';
 import { BiciclettaDettagliComponent } from './pages/bicicletta-dettagli/bicicletta-dettagli.component';
+import { FormVenditaComponent } from './pages/form-vendita/form-vendita.component';
 
 const routes: Routes = [
   {
@@ -23,9 +24,14 @@ const routes: Routes = [
     component: VenditaComponent
   }, 
   {
-    title: "Form_inserimento",
-    path: 'form_inserimento',
-    component: FormVenditaNoleggioComponent
+    title: "form_noleggio",
+    path: 'form_noleggio',
+    component: FormNoleggioComponent
+  },
+  {
+    title: "form_vendita",
+    path: 'form_vendita',
+    component: FormVenditaComponent
   },
   {
     title: "dettaglio",
