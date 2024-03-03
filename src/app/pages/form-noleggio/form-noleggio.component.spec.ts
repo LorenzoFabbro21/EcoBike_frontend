@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormVenditaNoleggioComponent } from './form-vendita-noleggio.component';
+import { FormNoleggioComponent } from './form-noleggio.component';
 
 describe('FormVenditaNoleggioComponent', () => {
-  let component: FormVenditaNoleggioComponent;
-  let fixture: ComponentFixture<FormVenditaNoleggioComponent>;
+  let component: FormNoleggioComponent;
+  let fixture: ComponentFixture<FormNoleggioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormVenditaNoleggioComponent ]
+      declarations: [ FormNoleggioComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FormVenditaNoleggioComponent);
+    fixture = TestBed.createComponent(FormNoleggioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

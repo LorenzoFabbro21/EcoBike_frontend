@@ -1,66 +1,89 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Scroll, } from '@angular/router';
 import { Taglia } from 'src/app/enum/tagliaEnum';
 import { Bicicletta } from 'src/app/interfaces/bicicletta';
+import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
 
 @Component({
   selector: 'app-bicicletta-dettagli',
   templateUrl: './bicicletta-dettagli.component.html',
   styleUrls: ['./bicicletta-dettagli.component.scss']
 })
-export class BiciclettaDettagliComponent {
+export class BiciclettaDettagliComponent implements OnInit{
 
+  id: number = 0;
   bicicletta?: Bicicletta;
   prezzo?: number;
   prezzo_noTax?: number;
   bikesSimili: Bicicletta[]= [];
   images: string[]= [];
-  constructor ( private route: ActivatedRoute) {
-
-    this.images = ['ebike.jpg','ebike-2.jpg','ebike.jpg','ebike.jpg','ebike.jpg']; 
+  imagePrincipal: string= "";
+  constructor ( private route: ActivatedRoute, private ebService: EcobikeApiService) {
+    
     this.bikesSimili= [
       {
       id: 1,
-      modello: 'RX1-Sport',
-      marca: 'Olmo',
-      colore: 'Rosso e bianco',
-      taglia: Taglia.TagliaS,
-      tipologia: 'Mountain Bike',
-      immagini: 'ebike.jpg'
+      model: 'RX1-Sport',
+      brand: 'Olmo',
+      color: 'Rosso e bianco',
+      size: Taglia.TagliaS,
+      type: 'Mountain Bike',
+      img:  'ebike.jpg'
       },
       {
         id: 2,
-        modello: 'CV5-Sport',
-        marca: 'Thor',
-        colore: 'Rosso e nero',
-        taglia: Taglia.TagliaM,
-        tipologia: 'Mountain Bike',
-        immagini: 'ebike.jpg'
+        model:'CV5-Sport',
+        brand:'Thor',
+        color: 'Rosso e nero',
+        size:  Taglia.TagliaM,
+        type: 'Mountain Bike',
+        img: 'ebike.jpg'
         },
         {
           id: 3,
-          modello: 'BN8-Trial',
-          marca: 'Prova',
-          colore: 'Rosso e bianco',
-          taglia: Taglia.TagliaS,
-          tipologia: 'Trial',
-          immagini: 'ebike.jpg'
+          model:'BN8-Trial',
+          brand:'Prova',
+          color: 'Rosso e bianco',
+          size:  Taglia.TagliaS,
+          type: 'Trial',
+          img: 'ebike.jpg'
           },
           {
             id: 4,
-            modello: 'TopModel',
-            marca: 'Brabus',
-            colore: 'Verde',
-            taglia: Taglia.TagliaL,
-            tipologia: 'Mountain Bike',
-            immagini: 'ebike.jpg'
+            model: 'TopModel',
+            brand: 'Brabus',
+            color: 'Verde',
+            size: Taglia.TagliaL,
+            type: 'Mountain Bike',
+            img: 'ebike.jpg'
             }
     ];
   }
   ngOnInit() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     this.route.queryParams.subscribe(params => {
-      this.bicicletta = JSON.parse(params['ebike']);
-      this.prezzo = params["prezzo"];
+      this.id = JSON.parse(params['idBike']);
+      this.prezzo = JSON.parse(params['price']);
+    });
+
+    this.ebService.get_bicicletta(this.id).subscribe({
+      next: (response:Bicicletta) => {
+
+        if (response != null) {
+          this.bicicletta= response;
+          if(this.bicicletta !== undefined && this.bicicletta.img !== undefined) {
+            const splittedStrings = this.bicicletta.img.split('data:image/jpeg;base64');
+            splittedStrings.forEach((image: string) => {
+              if ( image !== "") {
+                this.images.push('data:image/jpeg;base64'+ image);
+              }
+              
+            });
+            this.imagePrincipal = this.images[0];
+            
+          }
+        }
+      }
     });
 
     if ( this.prezzo) {
@@ -74,11 +97,6 @@ export class BiciclettaDettagliComponent {
   }
 
   imageActualChange(image: string) {
-    if (this.bicicletta) {
-      this.bicicletta.immagini = image;
-    }
-    
-    
-
+    this.imagePrincipal = image;
   }
 }

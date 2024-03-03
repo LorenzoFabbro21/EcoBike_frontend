@@ -9,4 +9,5 @@ import { Taglia } from './enum/tagliaEnum';
 })
 export class AppComponent {
   title = 'Taas_frontend';
+  
 }
