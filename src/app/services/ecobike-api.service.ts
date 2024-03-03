@@ -26,14 +26,32 @@ export class EcobikeApiService {
   }
 
 
-    /**
- * Restituisce l'elenco delle biciclette a noleggio
- *
- * Endpoint Rest: adsell/bikes
- */
-    public elenco_bici_vendita (): Observable<Bicicletta[]> {
-      return this.httpClient.get<Bicicletta[]>(`${this.url}/adsell/bikes`);
-    }
+  /**
+  * Restituisce l'elenco delle biciclette a noleggio
+  *
+  * Endpoint Rest: adsell/bikes
+  */
+  public elenco_bici_vendita (): Observable<Bicicletta[]> {
+    return this.httpClient.get<Bicicletta[]>(`${this.url}/adsell/bikes`);
+  }
+
+  /**
+  * Restituisce l'elenco dei noleggi
+  *
+  * Endpoint Rest: adrent
+  */
+  public elenco_noleggi(): Observable<adRent[]> {
+    return this.httpClient.get<adRent[]>(`${this.url}/adrent`);
+  }
+
+  /**
+  * Restituisce l'elenco dei noleggi
+  *
+  * Endpoint Rest: adsell
+  */
+  public elenco_vendite(): Observable<adSell[]> {
+    return this.httpClient.get<adSell[]>(`${this.url}/adsell`);
+  }
 
 /**
  * Restitusice la bicicletta selezionata
@@ -47,9 +65,10 @@ export class EcobikeApiService {
 
 
 
-  public get_biciclettae (): Observable<Bicicletta[]> {
+  public get_biciclette (): Observable<Bicicletta[]> {
     return  this.httpClient.get<Bicicletta[]>(`${this.url}/bike`);
   }
+
 /**
  * Inserisce una nuova bicicletta
  *
@@ -83,14 +102,13 @@ export class EcobikeApiService {
  *
  * Endpoint Rest: bike
  */
-  public new_vendita(adSell: adSell | any){
+  public new_vendita(adsell: adSell | any){
 
-    return this.httpClient.post<adSell>(`${this.url}/adsell`, adSell, {
-        headers: new HttpHeaders({
-          'Access-Control-Allow-Origin': '*'
-        })
-      }).pipe(retry(0), catchError(this.handleError)
-      );
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    }); 
+    let options = { headers: headers };
+    return this.httpClient.post<adSell>(`${this.url}/adsell`, adsell, options);
   }
   
 
