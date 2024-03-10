@@ -23,7 +23,7 @@ interface UploadEvent {
 export class FormVenditaComponent {
   uploadedFiles: any[] = [];
   userLogged?: LoggedUser;
-  tagliaValue!: Taglia;
+  tagliaValue!: any;
   tagliaFiltered: any[] = [];
   tagliaList: any[]= [];
   colore!:string;
@@ -88,7 +88,7 @@ export class FormVenditaComponent {
       model: this.model,
       brand: this.marca,
       color: this.colore,
-      size: Taglia.TagliaS,
+      size: this.tagliaValue.code,
       type: this.tipologia,
       measure: this.misure,
       img: this.img

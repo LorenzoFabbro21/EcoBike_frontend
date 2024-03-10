@@ -93,7 +93,16 @@
     height: 150px;
     font-size: xx-small;
 }
-
+.p-autocomplete-item {
+    margin: 0;
+    padding: 0.75rem 1.25rem;
+    border: 0 none;
+    color: #495057;
+    background: transparent;
+    transition: box-shadow 0.2s;
+    border-radius: 0;
+    font-size: medium;
+}
 .p-autocomplete-dd .p-autocomplete-input {
     color:#1f595c
 }

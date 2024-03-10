@@ -115,7 +115,6 @@ export class NoleggioComponent {
         }
     }
     this.marcaFiltered = filtered;
-    
   }
 
   filterTaglia(event: AutoCompleteCompleteEvent) {
@@ -129,9 +128,6 @@ export class NoleggioComponent {
         }
     }
     this.tagliaFiltered = filtered;
-
-    
-
   }
 
   
