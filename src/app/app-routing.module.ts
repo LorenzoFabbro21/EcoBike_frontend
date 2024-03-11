@@ -7,7 +7,6 @@ import { FormNoleggioComponent } from './pages/form-noleggio/form-noleggio.compo
 import { BiciclettaVenditaComponent } from './pages/bicicletta-vendita/bicicletta-vendita.component';
 import { FormVenditaComponent } from './pages/form-vendita/form-vendita.component';
 import { BiciclettaNoleggioComponent } from './pages/bicicletta-noleggio/bicicletta-noleggio.component';
-import { LoginFormComponent } from './pages/login-form/login-form.component';
 
 const routes: Routes = [
   {
@@ -44,11 +43,6 @@ const routes: Routes = [
     title: "dettaglio_noleggio",
     path: 'dettagli_noleggio',
     component: BiciclettaNoleggioComponent
-  },
-  {
-    title: "login-form",
-    path: 'login-form',
-    component: LoginFormComponent
   }
 ];
 @NgModule({
