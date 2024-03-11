@@ -33,6 +33,7 @@ export class NoleggioComponent {
   rents: adRent[]= [];
   bikeRentPrice: bikeRentSell[] = [];
   mostraSpinner: boolean= true;
+  spinnerFilter: boolean= false;
   bikesNoleggioBackup: Bicicletta[] = [];
 
 
@@ -161,7 +162,7 @@ export class NoleggioComponent {
   }
   
   getBikesFiltered(){
-
+    this.spinnerFilter = true;
     this.ebService.findFilteredBikes(this.marcaValue,this.coloreValue,this.tagliaValue).subscribe({
       next: (response:Bicicletta[]) => {
         this.bikeRentPrice.splice(0,this.bikeRentPrice.length);
@@ -177,6 +178,7 @@ export class NoleggioComponent {
               }
             });
           });
+          this.spinnerFilter = false;
         }
       }
     })

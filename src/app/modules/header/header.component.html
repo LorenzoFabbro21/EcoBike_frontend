@@ -13,10 +13,10 @@
     </div>
     <div class="linkUser">
         <div class="link">
-            <a routerLink="/noleggio"  label="Noleggio" routerLinkActive="active-link" class='linkRow' >Noleggio E-Bike</a>
-            <a routerLink="/vendita"  label="Acquisto" routerLinkActive="active-link" class='linkRow' >Acquisto E-Bike</a>
-            <a routerLink="/form_noleggio"  label="form_inserimento" routerLinkActive="active-link" class='linkRow' >Noleggio E-Bike</a>
-            <a routerLink="/form_vendita"  label="form_inserimento" routerLinkActive="active-link" class='linkRow' >Vendita E-Bike</a>
+            <a routerLink="/noleggio"  label="Noleggio" routerLinkActive="active-link" class='linkRow' >Visualizza Noleggi</a>
+            <a routerLink="/vendita"  label="Acquisto" routerLinkActive="active-link" class='linkRow' >Visualizza Vendite</a>
+            <a routerLink="/form_noleggio"  label="form_inserimento" routerLinkActive="active-link" class='linkRow' >Inserisci Noleggio</a>
+            <a routerLink="/form_vendita"  label="form_inserimento" routerLinkActive="active-link" class='linkRow' >Inserisci Vendita</a>
         </div>
         <div *ngIf="user" class = 'user-info-content'> 
             <span>Benvenuto {{user.username}}</span>

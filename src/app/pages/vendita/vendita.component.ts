@@ -33,6 +33,7 @@ export class VenditaComponent {
   sells: adSell[]= [];
   bikeSellPrice:bikeRentSell[]= [];
   mostraSpinner:boolean = true;
+  spinnerFilter: boolean= false;
 
   constructor (private ebService: EcobikeApiService) {
 
@@ -154,7 +155,7 @@ export class VenditaComponent {
   }
   
   getBikesFiltered(){
-
+    this.spinnerFilter = true;
     this.ebService.findFilteredBikes(this.marcaValue,this.coloreValue,this.tagliaValue).subscribe({
       next: (response:Bicicletta[]) => {
         this.bikeSellPrice.splice(0,this.bikeSellPrice.length);
@@ -170,6 +171,7 @@ export class VenditaComponent {
               }
             });
           });
+          this.spinnerFilter = false;
         }
       }
     })

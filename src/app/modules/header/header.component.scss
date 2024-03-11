@@ -109,7 +109,13 @@
     
     font-size: large;
     text-decoration: none;
+    
     }
+    .linkRow.active-link {
+      font-weight: bold;
+    }
+
+
   }
   
   .signup {
