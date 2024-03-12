@@ -63,7 +63,7 @@ export class FormNoleggioComponent {
     this.tagliaFiltered = filtered;
   }
 
-  onUpload(event:UploadEvent) {
+  onUpload(event:UploadEvent | any ) {
     for(let file of event.files) {
         this.uploadedFiles.push(file);
     }

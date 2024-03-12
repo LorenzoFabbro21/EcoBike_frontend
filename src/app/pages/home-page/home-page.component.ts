@@ -4,6 +4,7 @@ import { adSell } from 'src/app/interfaces/adSell';
 import { Bicicletta } from 'src/app/interfaces/bicicletta';
 import { bikeRentSell } from 'src/app/interfaces/bikeRentSell';
 import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
