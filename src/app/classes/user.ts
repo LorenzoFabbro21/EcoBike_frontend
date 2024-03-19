@@ -3,23 +3,18 @@ export class LoggedUser implements User {
     constructor () {
       return;
     }
-  
-    /** Logged username */
-    username?: string;
-    /** Logged name-surname */
-    name?: string;
 
-    type?: string;
+    name?: string;
+    last_name?: string;
     token?: string;
-  
+    email?:string;
+    exp?:number
   }
   
   export interface User {
-     /** Logged username */
-     username?: string;
-     /** Logged name-surname */
+
      name?: string;
-     type?: string;
-     token?: string
+     last_name?: string;
+     email?: string;
   }
   

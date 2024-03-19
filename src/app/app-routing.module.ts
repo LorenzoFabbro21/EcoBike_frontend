@@ -8,6 +8,8 @@ import { BiciclettaVenditaComponent } from './pages/bicicletta-vendita/biciclett
 import { FormVenditaComponent } from './pages/form-vendita/form-vendita.component';
 import { BiciclettaNoleggioComponent } from './pages/bicicletta-noleggio/bicicletta-noleggio.component';
 import { LoginFormComponent } from './pages/login-form/login-form.component';
+import { AuthenticationComponent } from './pages/authentication/authentication.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 const routes: Routes = [
   {
@@ -49,6 +51,16 @@ const routes: Routes = [
     title: "login-form",
     path: 'login-form',
     component: LoginFormComponent
+  },
+  {
+    title: "authentication",
+    path: 'authentication',
+    component: AuthenticationComponent
+  },
+  {
+    title: "signup",
+    path: 'signup',
+    component: SignupComponent
   }
 ];
 @NgModule({

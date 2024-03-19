@@ -9,6 +9,8 @@ import { UserLoggedService } from 'src/app/services/user-logged.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+
+  
   ngOnChanges (changes: SimpleChanges): void {
     if ( changes['sidebar']) {
       if ( changes['sidebar'].currentValue === false && changes['sidebar'].firstChange !== true) {
@@ -21,11 +23,13 @@ export class HeaderComponent {
   @Output()
     clickButton = new EventEmitter<boolean>();
 
-  constructor ( private router: Router, private userService: UserLoggedService ) {
-    
-  }
+  userLogged: LoggedUser | null = null;
 
-  user?: LoggedUser;
+  constructor ( private router: Router, private userService: UserLoggedService ) {
+    this.userLogged = this.userService.bindUpdateUser((updatedUser) => {
+      this.userLogged = updatedUser;
+    });
+  }
 
   logout (): void {
     this.userService.logout();

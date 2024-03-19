@@ -1,4 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
+import { loginRequest } from 'src/app/classes/loginRequest';
+import { LoggedUser } from 'src/app/classes/user';
+import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
+import { UserLoggedService } from 'src/app/services/user-logged.service';
+import { jwtDecode } from "jwt-decode";
+import { Router } from '@angular/router';
     
 @Component({
   selector: 'app-root',
@@ -6,70 +12,48 @@ import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  title = 'loginGoogle';
-    
-  auth2: any;
-    
-  @ViewChild('loginRef', {static: true }) loginElement!: ElementRef;
+
      
-  constructor() { }
-  
-  ngOnInit() {
-     
-    this.googleAuthSDK();
-  }
-    
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
-  callLoginButton() {
-     
-    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
-      (googleAuthUser:any) => {
-     
-        let profile = googleAuthUser.getBasicProfile();
-        console.log('Token || ' + googleAuthUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-            
-       /* Write Your Code Here */
-    
-      }, (error:any) => {
-        alert(JSON.stringify(error, undefined, 2));
-      });
- 
+  url?:String;
+  mail: String = "";
+  password: String = "";
+  constructor (private ebService: EcobikeApiService, private userLogin: UserLoggedService,  private router: Router) {
+
   }
   
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
-  googleAuthSDK() {
-     
-    (<any>window)['googleSDKLoaded'] = () => {
-      (<any>window)['gapi'].load('auth2', () => {
-        this.auth2 = (<any>window)['gapi'].auth2.init({
-          client_id: '53130792294-oaq69dlsu5e4eonbbv63tnoonadsvf22.apps.googleusercontent.com',
-          cookiepolicy: 'single_host_origin',
-          scope: 'profile email'
-        });
-        this.callLoginButton();
-      });
+  ngOnInit(): void {
+ }
+    
+  googleLogin() {
+    window.location.href = 'http://localhost:8090/oauth2/authorization/google';
+  }
+
+  signupHref() {
+    window.location.href = 'http://localhost:4200/signup';
+  }
+
+  login() {
+    const login : loginRequest =  {
+      email: this.mail,
+      password: this.password
     }
-     
-    (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement('script'); 
-      js.id = id;
-      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
-      fjs?.parentNode?.insertBefore(js, fjs);
-    }(document, 'script', 'google-jssdk'));
-   
+    this.ebService.login(login).subscribe({
+      next: (response:any) => { 
+        const token = response.token; // Supponendo che il token sia contenuto all'interno dell'oggetto di risposta con la chiave 'token'
+        const decoded : any = jwtDecode(token);
+        const userLogged: LoggedUser = {
+          name: decoded.name,
+          last_name: decoded.last_name,
+          token: token,
+          email : decoded.sub,
+          exp:decoded.exp
+        
+          //picture volendo
+        }
+        this.userLogin.login(userLogged);
+        this.router.navigate(['/']);
+
+      }
+    });
   }
 }

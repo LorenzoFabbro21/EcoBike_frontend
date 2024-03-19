@@ -13,6 +13,9 @@ import { FormVenditaModule } from './pages/form-vendita/form-vendita.module';
 import { BiciclettaVenditaModule } from './pages/bicicletta-vendita/bicicletta-vendita.module';
 import { BiciclettaNoleggioModule } from './pages/bicicletta-noleggio/bicicletta-noleggio.module';
 import { LoginFormModule } from './pages/login-form/login-form.module';
+import { AuthenticationModule } from './pages/authentication/authentication.module';
+import { SignupModule } from './pages/signup/signup.module';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { LoginFormModule } from './pages/login-form/login-form.module';
     FormVenditaModule,
     BiciclettaVenditaModule,
     BiciclettaNoleggioModule,
-    LoginFormModule
+    LoginFormModule,
+    AuthenticationModule,
+    SignupModule
   ],
   providers: [],
   bootstrap: [AppComponent]

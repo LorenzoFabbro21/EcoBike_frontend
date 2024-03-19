@@ -6,6 +6,8 @@ import { catchError, retry, throwError } from 'rxjs';
 import { adRent } from '../interfaces/adRent';
 import { adSell } from '../interfaces/adSell';
 import { Booking } from '../interfaces/booking';
+import { loginRequest } from '../classes/loginRequest';
+import { signupRequest } from '../classes/signupRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -131,6 +133,24 @@ export class EcobikeApiService {
     return  this.httpClient.get<Booking[]>(`${this.url}/booking`);
   }
 
+  public login(login: loginRequest){
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    }); 
+    let options = { headers: headers };
+    return this.httpClient.post<loginRequest>(`http://localhost:8090/auth/login`, login, options);
+  }
+
+  public signup(signup: signupRequest){
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    }); 
+    let options = { headers: headers };
+    return this.httpClient.post<signupRequest>(`http://localhost:8090/auth/signup`, signup, options);
+  }
+
   /**
   * Restituisce l'elenco delle biciclette filtrate
   *
@@ -154,6 +174,15 @@ export class EcobikeApiService {
 
     return this.httpClient.get<Bicicletta[]>(`${this.url}/bike/filter`, { params });
   }
+  /*
+  getWithToken(endpoint: string): Observable<any> {
+    const token = 'il-tuo-token-jwt'; // Qui dovresti ottenere il token JWT dal servizio di autenticazione
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<any>(`${this.apiUrl}/${endpoint}`, { headers });
+  }
+  */
 
   handleError(error: any) {
     let errorMessage = '';
