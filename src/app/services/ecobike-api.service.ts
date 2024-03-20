@@ -8,11 +8,14 @@ import { adSell } from '../interfaces/adSell';
 import { Booking } from '../interfaces/booking';
 import { loginRequest } from '../classes/loginRequest';
 import { signupRequest } from '../classes/signupRequest';
+import { userBikeInfo } from '../interfaces/userBikeInfo';
+import { User } from '../classes/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EcobikeApiService {
+  
 
   constructor(protected httpClient: HttpClient) { }
 
@@ -184,6 +187,12 @@ export class EcobikeApiService {
   }
   */
 
+
+  getUser(email: string | undefined) {
+    return this.httpClient.get<User>("${this.url}/email/" + email);
+  }
+
+
   handleError(error: any) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -198,7 +207,19 @@ export class EcobikeApiService {
       return errorMessage;
     });
   }
-}
 
+ /**
+  * Restituisce l'elenco delle vendite di un utente
+  *
+  * Endpoint Rest: appointment/user/{id}/bikes
+  */
+  public list_bikes_sold_by_user(id : number): Observable<userBikeInfo[]> {
+    return this.httpClient.get<userBikeInfo[]>("${this.url}/appointment/user/" + id + "/bikes"); 
+  }
+
+
+
+
+}
 
 

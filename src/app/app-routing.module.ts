@@ -10,6 +10,7 @@ import { BiciclettaNoleggioComponent } from './pages/bicicletta-noleggio/bicicle
 import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { BikesSoldComponent } from './pages/bikes-sold/bikes-sold.component';
 
 const routes: Routes = [
   {
@@ -61,6 +62,11 @@ const routes: Routes = [
     title: "signup",
     path: 'signup',
     component: SignupComponent
+  },
+  {
+    title: "bikes-sold",
+    path: 'bikes-sold',
+    component: BikesSoldComponent
   }
 ];
 @NgModule({

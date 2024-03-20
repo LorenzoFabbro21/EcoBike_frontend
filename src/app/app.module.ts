@@ -15,6 +15,8 @@ import { BiciclettaNoleggioModule } from './pages/bicicletta-noleggio/bicicletta
 import { LoginFormModule } from './pages/login-form/login-form.module';
 import { AuthenticationModule } from './pages/authentication/authentication.module';
 import { SignupModule } from './pages/signup/signup.module';
+import { BikesSoldModule } from './pages/bikes-sold/bikes-sold.module';
+
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { SignupModule } from './pages/signup/signup.module';
     BiciclettaNoleggioModule,
     LoginFormModule,
     AuthenticationModule,
-    SignupModule
+    SignupModule,
+    BikesSoldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
