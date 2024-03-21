@@ -1,6 +1,14 @@
 @import "../../../../node_modules/primeicons/primeicons.css";
 @import '~primeicons/primeicons.css';
 
+
+:host ::ng-deep .p-menubar {
+  background-color: transparent;
+  border-color: transparent;
+
+}
+
+
 .header {
   
   display: flex;
@@ -157,3 +165,6 @@
     color: #ffffff;
     border-color: #01aaa9;
 }
+
+
+

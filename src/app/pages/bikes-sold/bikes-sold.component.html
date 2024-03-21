@@ -1,0 +1,6 @@
+Bici in vendita da te
+<div class="view">
+    <div *ngFor=" let x of bikeSold;  let i=index" >
+        <app-ebike-ad [bike]="x.bike" [price]="x.price" [user]="x.user" [date]="x.date"></app-ebike-ad>
+    </div>
+</div>

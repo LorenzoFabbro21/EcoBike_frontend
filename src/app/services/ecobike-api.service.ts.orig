@@ -8,7 +8,10 @@ import { adSell } from '../interfaces/adSell';
 import { Booking } from '../interfaces/booking';
 import { loginRequest } from '../classes/loginRequest';
 import { signupRequest } from '../classes/signupRequest';
+<<<<<<< HEAD
+=======
 import { userBikeInfo } from '../interfaces/userBikeInfo';
+>>>>>>> origin/mimmo_toscano
 import { User } from '../classes/user';
 
 @Injectable({
