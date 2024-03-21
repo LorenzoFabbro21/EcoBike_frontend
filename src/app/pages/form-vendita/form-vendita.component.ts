@@ -4,6 +4,7 @@ import { Taglia } from 'src/app/enum/tagliaEnum';
 import { adSell } from 'src/app/interfaces/adSell';
 import { Bicicletta } from 'src/app/interfaces/bicicletta';
 import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
+import { UserLoggedService } from 'src/app/services/user-logged.service';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event| any;
@@ -35,7 +36,7 @@ export class FormVenditaComponent {
   img?:any;
   mostraSpinner: boolean= false;
 
-  constructor ( private ebService: EcobikeApiService) {
+  constructor ( private ebService: EcobikeApiService, private userService : UserLoggedService) {
     
     /* if ( userService.userLogged ) {
       this.userLogged = userService.userLogged;
@@ -93,29 +94,32 @@ export class FormVenditaComponent {
       measure: this.misure,
       img: this.img
     }
-
-    this.ebService.new_bike(bike).subscribe(response=>{
-      if( response && response.id) {
-        idBike = response.id;
-
-        let adSell: adSell;
-        adSell = {
-        price:this.prezzo,
-        idBike:idBike
+    if ( this.userService.userLogged?.token !== undefined) {
+      let token : string = this.userService.userLogged?.token;
+      this.ebService.new_bike(bike, token).subscribe(response=>{
+        if( response && response.id) {
+          idBike = response.id;
+  
+          let adSell: adSell;
+          adSell = {
+          price:this.prezzo,
+          idBike:idBike
+          }
+          this.ebService.new_vendita(adSell,token).subscribe({
+            next: (response:adSell) => {
+              console.log(response);
+              
+              setTimeout(() => {
+                this.mostraSpinner = false;
+                window.location.reload();
+              }, 3500);
+          }
+          });
         }
-        this.ebService.new_vendita(adSell).subscribe({
-          next: (response:adSell) => {
-            console.log(response);
-            
-            setTimeout(() => {
-              this.mostraSpinner = false;
-              window.location.reload();
-            }, 3500);
-        }
-        });
-      }
-
-    });
+  
+      });
+    }
+    
     
 
   }

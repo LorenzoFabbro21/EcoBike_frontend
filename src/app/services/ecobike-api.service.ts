@@ -8,6 +8,7 @@ import { adSell } from '../interfaces/adSell';
 import { Booking } from '../interfaces/booking';
 import { loginRequest } from '../classes/loginRequest';
 import { signupRequest } from '../classes/signupRequest';
+import { User } from '../classes/user';
 
 @Injectable({
   providedIn: 'root'
@@ -77,10 +78,12 @@ export class EcobikeApiService {
  *
  * Endpoint Rest: bike
  */
-  public new_bike(bike: Bicicletta | any){
+  public new_bike(bike: Bicicletta | any, token: string){
    let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
   }); 
+
   let options = { headers: headers };
     return this.httpClient.post<Bicicletta>(`${this.url}/bike`,bike, options);
   }
@@ -91,10 +94,11 @@ export class EcobikeApiService {
  *
  * Endpoint Rest: bike
  */
-  public new_noleggio(adRent: adRent | any){
+  public new_noleggio(adRent: adRent | any, token: string){
 
     let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     }); 
     let options = { headers: headers };
     return this.httpClient.post<adRent>(`${this.url}/adrent`, adRent, options);
@@ -105,10 +109,11 @@ export class EcobikeApiService {
  *
  * Endpoint Rest: bike
  */
-  public new_vendita(adsell: adSell | any){
+  public new_vendita(adsell: adSell | any, token: string){
 
     let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     }); 
     let options = { headers: headers };
     return this.httpClient.post<adSell>(`${this.url}/adsell`, adsell, options);
@@ -120,10 +125,11 @@ export class EcobikeApiService {
  *
  * Endpoint Rest: bike
  */
-  public new_booking(booking: Booking){
+  public new_booking(booking: Booking, token: string){
 
     let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     }); 
     let options = { headers: headers };
     return this.httpClient.post<Booking>(`${this.url}/booking`, booking, options);
@@ -138,7 +144,7 @@ export class EcobikeApiService {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     }); 
-    let options = { headers: headers };
+    let options = { headers: headers,  };
     return this.httpClient.post<loginRequest>(`http://localhost:8090/auth/login`, login, options);
   }
 

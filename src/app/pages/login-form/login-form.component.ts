@@ -5,6 +5,7 @@ import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
 import { UserLoggedService } from 'src/app/services/user-logged.service';
 import { jwtDecode } from "jwt-decode";
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
     
 @Component({
   selector: 'app-root',
@@ -17,6 +18,9 @@ export class LoginFormComponent implements OnInit {
   url?:String;
   mail: String = "";
   password: String = "";
+  showError : boolean = false;
+  errorStatus: string = "";
+  errorMessage: string = "";
   constructor (private ebService: EcobikeApiService, private userLogin: UserLoggedService,  private router: Router) {
 
   }
@@ -53,7 +57,35 @@ export class LoginFormComponent implements OnInit {
         this.userLogin.login(userLogged);
         this.router.navigate(['/']);
 
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.errorStatus = "Error:" + error.status.toString();
+          const errorMessageParts = error.error.split(':'); // Dividi la stringa utilizzando i due punti
+          if( errorMessageParts.length == 1) {
+            this.errorMessage = errorMessageParts[0];
+          }
+          else {
+            const errorMessage = errorMessageParts.slice(1).join(':').trim();
+            this.errorMessage = errorMessage;
+          }
+          
+          this.showError = true;
+        } else if (error.status === 400) {
+          this.errorStatus = error.status.toString();
+          this.errorMessage = error.message;
+          this.showError = true;
+        } else {
+          this.errorStatus = error.status.toString();
+          this.errorMessage = error.message;
+          this.showError = true;
+          // Gestire altri tipi di errori qui
+        }
       }
     });
+  }
+
+  changeValue (event : boolean | any) :void {
+    this.showError = event;
   }
 }
