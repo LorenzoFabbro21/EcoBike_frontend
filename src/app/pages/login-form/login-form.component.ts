@@ -42,6 +42,7 @@ export class LoginFormComponent implements OnInit {
         const token = response.token; // Supponendo che il token sia contenuto all'interno dell'oggetto di risposta con la chiave 'token'
         const decoded : any = jwtDecode(token);
         const userLogged: LoggedUser = {
+          id: decoded.id,
           name: decoded.name,
           last_name: decoded.last_name,
           token: token,

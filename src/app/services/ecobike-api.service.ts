@@ -189,7 +189,7 @@ export class EcobikeApiService {
 
 
   getUser(email: string | undefined) {
-    return this.httpClient.get<User>("${this.url}/email/" + email);
+    return this.httpClient.get<User>(`${this.url}/private/` + email);
   }
 
 
@@ -214,7 +214,7 @@ export class EcobikeApiService {
   * Endpoint Rest: appointment/user/{id}/bikes
   */
   public list_bikes_sold_by_user(id : number): Observable<userBikeInfo[]> {
-    return this.httpClient.get<userBikeInfo[]>("${this.url}/appointment/user/" + id + "/bikes"); 
+    return this.httpClient.get<userBikeInfo[]>(`${this.url}/appointment/user/` + id + `/bikes`); 
   }
 
 

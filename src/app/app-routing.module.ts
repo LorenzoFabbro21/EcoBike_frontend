@@ -11,6 +11,7 @@ import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { BikesSoldComponent } from './pages/bikes-sold/bikes-sold.component';
+import { BikeSoldDetailsComponent } from './pages/bike-sold-details/bike-sold-details.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,11 @@ const routes: Routes = [
     title: "bikes-sold",
     path: 'bikes-sold',
     component: BikesSoldComponent
+  },
+  {
+    title: "bike_sold_details",
+    path: 'bike_sold_details',
+    component: BikeSoldDetailsComponent
   }
 ];
 @NgModule({

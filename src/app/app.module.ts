@@ -16,6 +16,7 @@ import { LoginFormModule } from './pages/login-form/login-form.module';
 import { AuthenticationModule } from './pages/authentication/authentication.module';
 import { SignupModule } from './pages/signup/signup.module';
 import { BikesSoldModule } from './pages/bikes-sold/bikes-sold.module';
+import { BikeSoldDetailsModule } from './pages/bike-sold-details/bike-sold-details.module';
 
 
 
@@ -38,7 +39,8 @@ import { BikesSoldModule } from './pages/bikes-sold/bikes-sold.module';
     LoginFormModule,
     AuthenticationModule,
     SignupModule,
-    BikesSoldModule
+    BikesSoldModule,
+    BikeSoldDetailsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
