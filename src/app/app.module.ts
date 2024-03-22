@@ -39,7 +39,7 @@ import { BikesSoldModule } from './pages/bikes-sold/bikes-sold.module';
     LoginFormModule,
     AuthenticationModule,
     SignupModule,
-    ErrorDialogModule
+    ErrorDialogModule,
     BikesSoldModule
   ],
   providers: [],

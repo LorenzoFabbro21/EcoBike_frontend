@@ -8,7 +8,8 @@ export class LoggedUser implements User {
     last_name?: string;
     token?: string;
     email?:string;
-    exp?:number
+    exp?:number;
+    type?:string;
   }
   
   export interface User {

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { loginRequest } from 'src/app/classes/loginRequest';
-import { LoggedUser } from 'src/app/classes/user';
+import { LoggedUser, User } from 'src/app/classes/user';
 import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
 import { UserLoggedService } from 'src/app/services/user-logged.service';
 import { jwtDecode } from "jwt-decode";
@@ -45,19 +45,70 @@ export class LoginFormComponent implements OnInit {
       next: (response:any) => { 
         const token = response.token; // Supponendo che il token sia contenuto all'interno dell'oggetto di risposta con la chiave 'token'
         const decoded : any = jwtDecode(token);
-        const userLogged: LoggedUser = {
-          name: decoded.name,
-          last_name: decoded.last_name,
-          token: token,
-          email : decoded.sub,
-          exp:decoded.exp
-        
-          //picture volendo
-        }
-        this.userLogin.login(userLogged);
-        this.router.navigate(['/']);
-
-      },
+        this.ebService.getPrivateUser(decoded.sub).subscribe({
+          next: (response:User) => { 
+            if (response == null) {
+              this.ebService.getDealer(decoded.sub).subscribe({
+                next: (response:User) => { 
+                  const userLogged: LoggedUser = {
+                    id: response.id,
+                    name: decoded.name,
+                    last_name: decoded.last_name,
+                    token: token,
+                    email : decoded.sub,
+                    exp:decoded.exp,
+                    type:"d"
+                  
+                    //picture volendo
+                  }
+                  this.userLogin.login(userLogged);
+                  this.router.navigate(['/']);
+                }
+              });
+            }
+            else {
+              const userLogged: LoggedUser = {
+                id: response.id,
+                name: decoded.name,
+                last_name: decoded.last_name,
+                token: token,
+                email : decoded.sub,
+                exp:decoded.exp,
+                type:"p"
+              
+                //picture volendo
+              }
+              this.userLogin.login(userLogged);
+              this.router.navigate(['/']);
+            }
+            
+          },
+          error: (error: HttpErrorResponse) => {
+            if (error.status === 404) {
+              this.errorStatus = "Error:" + error.status.toString();
+              const errorMessageParts = error.error.split(':'); // Dividi la stringa utilizzando i due punti
+              if( errorMessageParts.length == 1) {
+                this.errorMessage = errorMessageParts[0];
+              }
+              else {
+                const errorMessage = errorMessageParts.slice(1).join(':').trim();
+                this.errorMessage = errorMessage;
+              }
+              
+              this.showError = true;
+            } else if (error.status === 400) {
+              this.errorStatus = error.status.toString();
+              this.errorMessage = error.message;
+              this.showError = true;
+            } else {
+              this.errorStatus = error.status.toString();
+              this.errorMessage = error.message;
+              this.showError = true;
+              // Gestire altri tipi di errori qui
+            }
+          }
+        });
+      }, 
       error: (error: HttpErrorResponse) => {
         if (error.status === 404) {
           this.errorStatus = "Error:" + error.status.toString();
