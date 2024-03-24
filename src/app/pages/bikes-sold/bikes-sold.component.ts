@@ -17,23 +17,20 @@ import { UserLoggedService } from 'src/app/services/user-logged.service';
 export class BikesSoldComponent {
 
   bikesVendita: Bicicletta[] = [];
+  sells: userBikeInfo[] = [];
   bikeSold: userBikeInfo[] = [];
 
   constructor (private ebService: EcobikeApiService, private userService: UserLoggedService) {
   
-    this.ebService.getUser(userService.userLogged?.email).subscribe({
-      next: (response: User) => {
-        if(response != undefined && response.id) { 
-          this.ebService.list_bikes_sold_by_user(response.id).subscribe({
-            next: (response: userBikeInfo[]) => {
-              if(response != null) {
-                this.bikeSold = response
-                console.log(this.bikeSold)
-              }
-            }
-          });
+    if ( this.userService.userLogged?.id && this.userService.userLogged.token != undefined) {
+      this.ebService.list_bikes_sold_by_user(this.userService.userLogged?.id, this.userService.userLogged?.token).subscribe({
+        next: (response: userBikeInfo[]) => {
+          if(response != null) {
+            this.bikeSold = response
+            console.log(this.bikeSold)
+          }
         }
-      }
-    });
+      });
+    }
   }
 }

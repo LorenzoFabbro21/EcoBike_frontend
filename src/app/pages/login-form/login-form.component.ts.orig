@@ -45,6 +45,7 @@ export class LoginFormComponent implements OnInit {
       next: (response:any) => { 
         const token = response.token; // Supponendo che il token sia contenuto all'interno dell'oggetto di risposta con la chiave 'token'
         const decoded : any = jwtDecode(token);
+<<<<<<< HEAD
         this.ebService.getPrivateUser(decoded.sub).subscribe({
           next: (response:User) => { 
             if (response == null) {
@@ -131,6 +132,17 @@ export class LoginFormComponent implements OnInit {
           this.errorMessage = error.message;
           this.showError = true;
           // Gestire altri tipi di errori qui
+=======
+        const userLogged: LoggedUser = {
+          id: decoded.id,
+          name: decoded.name,
+          last_name: decoded.last_name,
+          token: token,
+          email : decoded.sub,
+          exp:decoded.exp
+        
+          //picture volendo
+>>>>>>> mimmo_toscano
         }
       }
     });

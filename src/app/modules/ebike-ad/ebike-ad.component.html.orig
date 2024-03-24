@@ -1,0 +1,39 @@
+<div (click)="clickBike()">
+    <p-card>
+        <ng-template pTemplate="header">
+            <img *ngIf="bike && bike.img !== undefined" alt="Card" [src]="firstImage" class="image"/>
+        </ng-template>
+        <ng-template pTemplate="footer" class="footerStyle">
+<<<<<<< HEAD
+            <div class="idBike">E-Bike</div>
+
+            <div class="dettagliPrezzo">
+                <span class="details" *ngIf="ad && ad.price !== undefined">{{ad.price}}</span>
+                <br>
+=======
+            <div class="idBike">E-Bike {{bike?.brand}} {{bike?.model}}</div>
+
+            <div class="dettagliPrezzo">
+                <span class="details">{{ad?.price}}</span>
+                <br> 
+>>>>>>> mimmo_toscano
+                <span>€</span>
+            </div>
+        </ng-template>
+        <div class="additional-info">
+            <div class="user-info">
+<<<<<<< HEAD
+                <span *ngIf="user && user.name !== undefined">Acquistata da: {{user.name}}</span>
+            </div>
+            <div class="purchase-date">
+                <span *ngIf="appointment && appointment.date !== undefined">Data di acquisto: {{appointment.date}}</span>
+=======
+                <span>Acquistata da: {{user?.name}}</span>
+            </div>
+            <div class="purchase-date">
+                <span>Data di acquisto: {{appointment?.date}}</span>
+>>>>>>> mimmo_toscano
+            </div>
+        </div>
+    </p-card>
+</div>

@@ -5,6 +5,7 @@ import { adRent } from 'src/app/interfaces/adRent';
 import { Bicicletta } from 'src/app/interfaces/bicicletta';
 import { Booking } from 'src/app/interfaces/booking';
 import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
+import { UserLoggedService } from 'src/app/services/user-logged.service';
 
 @Component({
   selector: 'app-bicicletta-noleggio',
@@ -22,7 +23,7 @@ export class BiciclettaNoleggioComponent {
   date: Date | undefined;
   idAnnuncio?:number;
   disabledDates: Date[] = [];
-  constructor ( private route: ActivatedRoute, private ebService: EcobikeApiService) {
+  constructor ( private route: ActivatedRoute, private ebService: EcobikeApiService, private userService: UserLoggedService) {
 
     const oggi = new Date();
     oggi.setHours(0, 0, 0, 0);
@@ -160,14 +161,17 @@ export class BiciclettaNoleggioComponent {
       startdate : this.date,
       enddate: this.date
     }
-
-    this.ebService.new_booking(booking).subscribe({
-      next: (response:Booking) => {
-        if ( response) {
-          console.log(response);
+    if ( this.userService.userLogged?.token !== undefined) {
+      let token: string = this.userService.userLogged?.token;
+      this.ebService.new_booking(booking, token).subscribe({
+        next: (response:Booking) => {
+          if ( response) {
+            console.log(response);
+          }
         }
-      }
-    });
+      });
+    }
+    
 
     //const giorno = this.date?.toDateString();
   

@@ -30,3 +30,10 @@
   </div>
   
 </div>
+<app-error-dialog
+      [showModal]="showError"
+      [headerText]="errorStatus"
+      [label]="errorMessage"
+      (showModalChange)="changeValue($event)"
+
+    />

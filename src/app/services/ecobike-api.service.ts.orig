@@ -10,7 +10,6 @@ import { loginRequest } from '../classes/loginRequest';
 import { signupRequest } from '../classes/signupRequest';
 import { userBikeInfo } from '../interfaces/userBikeInfo';
 import { User } from '../classes/user';
-import { Review } from '../interfaces/review';
 
 @Injectable({
   providedIn: 'root'
@@ -86,6 +85,7 @@ export class EcobikeApiService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
   }); 
+
   let options = { headers: headers };
     return this.httpClient.post<Bicicletta>(`${this.url}/bike`,bike, options);
   }
@@ -96,7 +96,7 @@ export class EcobikeApiService {
  *
  * Endpoint Rest: bike
  */
-  public new_noleggio(adRent: adRent | any,  token: string){
+  public new_noleggio(adRent: adRent | any, token: string){
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ export class EcobikeApiService {
  *
  * Endpoint Rest: bike
  */
-  public new_vendita(adsell: adSell | any,  token: string){
+  public new_vendita(adsell: adSell | any, token: string){
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ export class EcobikeApiService {
  *
  * Endpoint Rest: bike
  */
-  public new_booking(booking: Booking,  token: string){
+  public new_booking(booking: Booking, token: string){
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ export class EcobikeApiService {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     }); 
-    let options = { headers: headers };
+    let options = { headers: headers,  };
     return this.httpClient.post<loginRequest>(`http://localhost:8090/auth/login`, login, options);
   }
 
@@ -193,20 +193,13 @@ export class EcobikeApiService {
   */
 
 
-  getUser(email: string | undefined) {
-    return this.httpClient.get<User>(`${this.url}/email/` + email);
-  }
-
-  getPrivateById(id: number | undefined) {
-    return this.httpClient.get<User>(`${this.url}/private/` + id);   //da implementare nel backend
-  }
-
-  getDealerById(id: number | undefined) {
-    return this.httpClient.get<User>(`${this.url}/dealer/` + id);   //da implementare nel backend
-  }
-
+<<<<<<< HEAD
   getPrivateUser(email: string) {
     return this.httpClient.get<User>(`${this.url}/private/email/` + email);
+=======
+  getUser(email: string | undefined) {
+    return this.httpClient.get<User>(`${this.url}/private/` + email);
+>>>>>>> mimmo_toscano
   }
 
   getDealer(email: string) {
@@ -214,9 +207,6 @@ export class EcobikeApiService {
   }
 
 
-  getReviewsByBike(idBike: number) {
-    return this.httpClient.get<Review[]>(`${this.url}/review`);    //da implementare nel backend e scrivere uri giusto
-  }
 
   handleError(error: any) {
     let errorMessage = '';
@@ -238,11 +228,12 @@ export class EcobikeApiService {
   *
   * Endpoint Rest: appointment/user/{id}/bikes
   */
-  public list_bikes_sold_by_user(id : number, token: string): Observable<userBikeInfo[]> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.httpClient.get<userBikeInfo[]>(`${this.url}/appointment/user/` + id + `/bikes`, {headers}); 
+  public list_bikes_sold_by_user(id : number): Observable<userBikeInfo[]> {
+<<<<<<< HEAD
+    return this.httpClient.get<userBikeInfo[]>(`${this.url}/appointment/user/` + id + "/bikes"); 
+=======
+    return this.httpClient.get<userBikeInfo[]>(`${this.url}/appointment/user/` + id + `/bikes`); 
+>>>>>>> mimmo_toscano
   }
 
 

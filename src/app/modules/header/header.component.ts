@@ -14,18 +14,19 @@ export class HeaderComponent implements OnInit{
   userName?: string;
 
   ngOnInit() {
-    this.userService.login(this.userProva);
-    this.userName = this.userProva.name;
-    
     this.items = [
         {
-            label: this.userName,
+            label: this.userLogged?.name,
             icon: 'pi pi-fw pi-user',
-            class: 'menubar',
+            class: ' p-menubar-start"',
             items: [
                 {
                     label: 'Your bikes',
+                    tooltipOptions: {
+                      tooltipPosition: 'left' 
+                    },
                     icon: 'pi pi-fw pi-user-plus',
+                    
                     items: [
                       {
                           label: 'For sale',
@@ -52,6 +53,7 @@ export class HeaderComponent implements OnInit{
             ]
         }
     ];
+    console.log( this.items);
 }
 
 
@@ -73,14 +75,15 @@ export class HeaderComponent implements OnInit{
     clickButton = new EventEmitter<boolean>();
 
   userLogged: LoggedUser | null = null;
-  userProva: LoggedUser = {
-    name: "Giorgio"
-  };
   constructor ( private router: Router, private userService: UserLoggedService ) {
     
     
     this.userLogged = this.userService.bindUpdateUser((updatedUser) => {
       this.userLogged = updatedUser;
+      if ( this.items) {
+        this.items[0].label = this.userLogged?.name;
+      }
+      
     });
   }
 

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
@@ -18,26 +19,72 @@ export class SignupComponent {
   mail: string="";
   phone_number: string="";
   password: string = "";
-
+  showError : boolean = false;
+  errorStatus: string = "";
+  errorMessage: string = "";
   constructor(private ebService: EcobikeApiService, private userLogin: UserLoggedService,  private router: Router) {
 
   }
   signup() {
     const signup : signupRequest =  {
-      name: this.first_name,
-      last_name: this.last_name,
-      email: this.mail,
-      phone_number: this.phone_number,
+      nome: this.first_name,
+      cognome: this.last_name,
+      mail: this.mail,
+      telefono: this.phone_number,
       password: this.password
     }
+
     this.ebService.signup(signup).subscribe({
       next: (response:any) => { 
-       
-        this.router.navigate(['/login']);
+        console.log(response);
+        this.router.navigate(['../login-form']);
 
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          this.errorStatus = "Error:" + error.status.toString();
+          const errorMessageParts = error.error.split(':'); // Dividi la stringa utilizzando i due punti
+          if( errorMessageParts.length == 1) {
+            this.errorMessage = errorMessageParts[0];
+          }
+          else {
+            const errorMessage = errorMessageParts.slice(1).join(':').trim();
+            this.errorMessage = errorMessage;
+          }
+          
+          this.showError = true;
+        } else if (error.status === 400) {
+          this.errorStatus = "Error:" + error.status.toString();
+          const errorMessageParts = error.error.split(':'); // Dividi la stringa utilizzando i due punti
+          if( errorMessageParts.length == 1) {
+            this.errorMessage = errorMessageParts[0];
+          }
+          else {
+            const errorMessage = errorMessageParts.slice(1).join(':').trim();
+            this.errorMessage = errorMessage;
+          }
+          
+          this.showError = true;
+        } else {
+          this.errorStatus = "Error:" + error.status.toString();
+          const errorMessageParts = error.error.split(':'); // Dividi la stringa utilizzando i due punti
+          if( errorMessageParts.length == 1) {
+            this.errorMessage = errorMessageParts[0];
+          }
+          else {
+            const errorMessage = errorMessageParts.slice(1).join(':').trim();
+            this.errorMessage = errorMessage;
+          }
+          
+          this.showError = true;
+        }
       }
-    });
+    })
     
+  }
+
+  changeValue (event : boolean | any) :void {
+    this.showError = event;
   }
 
 }

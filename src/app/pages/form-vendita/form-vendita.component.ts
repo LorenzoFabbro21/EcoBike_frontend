@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoggedUser } from 'src/app/classes/user';
 import { Taglia } from 'src/app/enum/tagliaEnum';
 import { adSell } from 'src/app/interfaces/adSell';
 import { Bicicletta } from 'src/app/interfaces/bicicletta';
 import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
+import { UserLoggedService } from 'src/app/services/user-logged.service';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event| any;
@@ -22,7 +24,7 @@ interface UploadEvent {
 })
 export class FormVenditaComponent {
   uploadedFiles: any[] = [];
-  userLogged?: LoggedUser;
+  userLogged: LoggedUser | null = null;
   tagliaValue!: any;
   tagliaFiltered: any[] = [];
   tagliaList: any[]= [];
@@ -35,11 +37,11 @@ export class FormVenditaComponent {
   img?:any;
   mostraSpinner: boolean= false;
 
-  constructor ( private ebService: EcobikeApiService) {
+  constructor (private router: Router, private ebService: EcobikeApiService, private userService : UserLoggedService) {
     
-    /* if ( userService.userLogged ) {
-      this.userLogged = userService.userLogged;
-    } */
+    this.userLogged = this.userService.bindUpdateUser((updatedUser) => {
+      this.userLogged = updatedUser;
+    });
     this.tagliaList = [
       { name: 'S', code: Taglia.TagliaS },
       { name: 'M', code: Taglia.TagliaM },
@@ -93,29 +95,33 @@ export class FormVenditaComponent {
       measure: this.misure,
       img: this.img
     }
-
-    this.ebService.new_bike(bike).subscribe(response=>{
-      if( response && response.id) {
-        idBike = response.id;
-
-        let adSell: adSell;
-        adSell = {
-        price:this.prezzo,
-        idBike:idBike
+    if ( this.userLogged?.token !== undefined) {
+      let token : string =  this.userLogged?.token;
+      this.ebService.new_bike(bike, token).subscribe(response=>{
+        if( response && response.id) {
+          idBike = response.id;
+  
+          let adSell: adSell;
+          adSell = {
+          price:this.prezzo,
+          idBike:idBike
+          }
+          this.ebService.new_vendita(adSell,token).subscribe({
+            next: (response:adSell) => {
+              console.log(response);
+              
+              setTimeout(() => {
+                this.mostraSpinner = false;
+                this.router.navigate(['/']);
+                
+              }, 3500);
+          }
+          });
         }
-        this.ebService.new_vendita(adSell).subscribe({
-          next: (response:adSell) => {
-            console.log(response);
-            
-            setTimeout(() => {
-              this.mostraSpinner = false;
-              window.location.reload();
-            }, 3500);
-        }
-        });
-      }
-
-    });
+  
+      });
+    }
+    
     
 
   }

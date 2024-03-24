@@ -18,8 +18,6 @@ import { SignupModule } from './pages/signup/signup.module';
 import { ErrorDialogModule } from './modules/error-dialog/error-dialog.module';
 import { BikesSoldModule } from './pages/bikes-sold/bikes-sold.module';
 import { BikeSoldDetailsModule } from './pages/bike-sold-details/bike-sold-details.module';
-import { ReviewsComponentModule } from './modules/reviews-component/reviews-component.module';
-
 
 
 
@@ -42,10 +40,13 @@ import { ReviewsComponentModule } from './modules/reviews-component/reviews-comp
     LoginFormModule,
     AuthenticationModule,
     SignupModule,
+<<<<<<< HEAD
     ErrorDialogModule,
-    BikeSoldDetailsModule,
+    BikesSoldModule
+=======
     BikesSoldModule,
-    ReviewsComponentModule
+    BikeSoldDetailsModule
+>>>>>>> mimmo_toscano
   ],
   providers: [],
   bootstrap: [AppComponent]

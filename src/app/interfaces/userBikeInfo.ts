@@ -5,7 +5,7 @@ import { Appointment } from "./appointment";
 import { Bicicletta } from "./bicicletta";
 
 export interface userBikeInfo {
-  adsell: adSell | adRent;
+  ad: adSell | adRent;
   appointment: Appointment;
   bike: Bicicletta;
   user: User;

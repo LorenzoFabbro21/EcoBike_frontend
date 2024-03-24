@@ -1,8 +1,8 @@
 export interface signupRequest {
 
-    name?: string;
-    last_name?: string;
-    email?: string;
-    phone_number?: string,
+    nome?: string;
+    cognome?: string;
+    mail?: string;
+    telefono?: string,
     password?: string
  }
