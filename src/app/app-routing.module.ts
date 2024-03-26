@@ -11,6 +11,10 @@ import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { BikesSoldComponent } from './pages/bikes-sold/bikes-sold.component';
+import { BikesForsaleComponent } from './pages/bikes-forsale/bikes-forsale.component';
+import { DettagliBikeToSellComponent } from './pages/dettagli-bike-to-sell/dettagli-bike-to-sell.component';
+import { BikesForRentComponent } from './pages/bikes-for-rent/bikes-for-rent.component';
+import { DetailsBikeToRentComponent } from './pages/details-bike-to-rent/details-bike-to-rent.component';
 
 const routes: Routes = [
   {
@@ -67,6 +71,26 @@ const routes: Routes = [
     title: "bikes-sold",
     path: 'bikes-sold',
     component: BikesSoldComponent
+  },
+  {
+    title: "bikes-forsale",
+    path: 'bikes-forsale',
+    component: BikesForsaleComponent
+  },
+  {
+    title: "dettagli-bike-to-sell",
+    path: 'dettagli-bike-to-sell',
+    component: DettagliBikeToSellComponent
+  },
+  {
+    title: "bikes-forRent",
+    path: 'bikes-forRent',
+    component: BikesForRentComponent
+  },
+  {
+    title: "details-bike-to-rent",
+    path: 'details-bike-to-rent',
+    component: DetailsBikeToRentComponent
   }
 ];
 @NgModule({

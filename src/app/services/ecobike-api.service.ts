@@ -217,7 +217,23 @@ export class EcobikeApiService {
     return this.httpClient.get<userBikeInfo[]>("${this.url}/appointment/user/" + id + "/bikes"); 
   }
 
+/**
+  * Restituisce l'elenco delle bike in vendita di un utente
+  *
+  * Endpoint Rest: adsell/user/{id}/bikes
+  */
+  public list_bikes_forsale_by_user(id : number): Observable<Bicicletta[]> {
+    return this.httpClient.get<Bicicletta[]>(`${this.url}/adsell/user/` + id + `/bikes`); 
+  }
 
+  /**
+  * Restituisce l'elenco delle bike in noleggio di un utente
+  *
+  * Endpoint Rest: adrent/user/{id}/bikes
+  */
+  public list_bikes_forRent_by_user(id : number): Observable<Bicicletta[]> {
+    return this.httpClient.get<Bicicletta[]>(`${this.url}/adrent/user/` + id + `/bikes`); 
+  }
 
 
 }

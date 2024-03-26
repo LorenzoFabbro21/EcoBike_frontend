@@ -22,7 +22,7 @@ export class BikesSoldComponent {
 
   constructor (private ebService: EcobikeApiService, private userService: UserLoggedService) {
   
-    this.ebService.getUser(userService.userLogged?.email).subscribe({
+    /*this.ebService.getUser(userService.userLogged?.email).subscribe({
       next: (response: User) => {
         if(response != null) 
 
@@ -32,8 +32,8 @@ export class BikesSoldComponent {
                 this.sells = response
             }
           });
-      }
-    });
+      }*/
+    //});
 
 
   

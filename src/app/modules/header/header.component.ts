@@ -30,12 +30,12 @@ export class HeaderComponent implements OnInit{
                       {
                           label: 'For sale',
                           icon: 'pi pi-fw pi-filter',
-                          routerLink: 'bike-for-sale'
+                          routerLink: 'bikes-forsale'
                       },
                       {
                           icon: 'pi pi-fw pi-bars',
                           label: 'For rent',
-                          routerLink: 'bikes-for-rent'
+                          routerLink: 'bikes-forRent'
                       }
                   ]
                 },

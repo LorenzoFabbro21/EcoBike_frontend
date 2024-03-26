@@ -16,7 +16,10 @@ import { LoginFormModule } from './pages/login-form/login-form.module';
 import { AuthenticationModule } from './pages/authentication/authentication.module';
 import { SignupModule } from './pages/signup/signup.module';
 import { BikesSoldModule } from './pages/bikes-sold/bikes-sold.module';
-
+import { BikesForsaleModule } from './pages/bikes-forsale/bikes-forsale.module';
+import { DettagliBikeToSellModule } from './pages/dettagli-bike-to-sell/dettagli-bike-to-sell.module';
+import { BikesForRentModule } from './pages/bikes-for-rent/bikes-for-rent.module';
+import { DetailsBikeToRentModule } from './pages/details-bike-to-rent/details-bike-to-rent.module';
 
 
 @NgModule({
@@ -38,7 +41,11 @@ import { BikesSoldModule } from './pages/bikes-sold/bikes-sold.module';
     LoginFormModule,
     AuthenticationModule,
     SignupModule,
-    BikesSoldModule
+    BikesSoldModule,
+    BikesForsaleModule,
+    DettagliBikeToSellModule,
+    BikesForRentModule,
+    DetailsBikeToRentModule
   ],
   providers: [],
   bootstrap: [AppComponent]
