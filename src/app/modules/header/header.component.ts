@@ -23,12 +23,12 @@ export class HeaderComponent implements OnInit{
           {
             label: 'E-bike in vendita',
             icon: 'pi pi-fw pi-filter',
-            routerLink: 'bike-for-sale'
+            routerLink: 'bikes_forSale'
           },
           {
             icon: 'pi pi-fw pi-bars',
             label: 'E-bike in noleggio',
-            routerLink: 'bikes-for-rent'
+            routerLink: 'bikes_forRent'
           },
           {
             label: 'E-bike vendute',

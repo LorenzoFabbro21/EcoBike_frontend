@@ -1,3 +1,4 @@
+import { Token } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { User } from 'src/app/classes/user';
 import { adRent } from 'src/app/interfaces/adRent';
@@ -22,8 +23,9 @@ export class BikesSoldComponent {
 
   constructor (private ebService: EcobikeApiService, private userService: UserLoggedService) {
   
-    if ( this.userService.userLogged?.id) {
-      this.ebService.list_bikes_sold_by_user(this.userService.userLogged?.id).subscribe({
+    if ( this.userService.userLogged?.id !== undefined && this.userService.userLogged?.token !== undefined) {
+      const token: string = this.userService.userLogged?.token;
+      this.ebService.list_bikes_sold_by_user(this.userService.userLogged?.id, token).subscribe({
         next: (response: userBikeInfo[]) => {
           if(response != null) {
             this.sells = response;

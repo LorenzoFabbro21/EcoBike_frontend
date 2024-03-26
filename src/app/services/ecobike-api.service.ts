@@ -207,16 +207,42 @@ export class EcobikeApiService {
   getDealer(email: string) {
     return this.httpClient.get<User>(`${this.url}/dealer/email/` + email);
   }
+
  /**
   * Restituisce l'elenco delle vendite di un utente
   *
   * Endpoint Rest: appointment/user/{id}/bikes
   */
- public list_bikes_sold_by_user(id : number): Observable<userBikeInfo[]> {
-  return this.httpClient.get<userBikeInfo[]>(`${this.url}/appointment/user/` + id + "/bikes"); 
+ public list_bikes_sold_by_user(id : number, token: string): Observable<userBikeInfo[]> {
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+  return this.httpClient.get<userBikeInfo[]>(`${this.url}/appointment/user/` + id + "/bikes", {headers}); 
 }
 
+/**
+* Restituisce l'elenco delle bike in vendita di un utente
+*
+* Endpoint Rest: adsell/user/{id}/bikes
+*/
+public list_bikes_forsale_by_user(id : number, token: string): Observable<Bicicletta[]> {
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+  return this.httpClient.get<Bicicletta[]>(`${this.url}/adsell/user/` + id + `/bikes`, {headers}); 
+}
 
+/**
+* Restituisce l'elenco delle bike in noleggio di un utente
+*
+* Endpoint Rest: adrent/user/{id}/bikes
+*/
+public list_bikes_forRent_by_user(id : number, token: string): Observable<Bicicletta[]> {
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+  return this.httpClient.get<Bicicletta[]>(`${this.url}/adrent/user/` + id + `/bikes`, {headers}); 
+}
   /**
  * Inserisce un nuovo shop
  *
@@ -278,32 +304,7 @@ export class EcobikeApiService {
     });
   }
 
- /**
-  * Restituisce l'elenco delle vendite di un utente
-  *
-  * Endpoint Rest: appointment/user/{id}/bikes
-  */
-  public list_bikes_sold_by_user(id : number): Observable<userBikeInfo[]> {
-    return this.httpClient.get<userBikeInfo[]>("${this.url}/appointment/user/" + id + "/bikes"); 
-  }
 
-/**
-  * Restituisce l'elenco delle bike in vendita di un utente
-  *
-  * Endpoint Rest: adsell/user/{id}/bikes
-  */
-  public list_bikes_forsale_by_user(id : number): Observable<Bicicletta[]> {
-    return this.httpClient.get<Bicicletta[]>(`${this.url}/adsell/user/` + id + `/bikes`); 
-  }
-
-  /**
-  * Restituisce l'elenco delle bike in noleggio di un utente
-  *
-  * Endpoint Rest: adrent/user/{id}/bikes
-  */
-  public list_bikes_forRent_by_user(id : number): Observable<Bicicletta[]> {
-    return this.httpClient.get<Bicicletta[]>(`${this.url}/adrent/user/` + id + `/bikes`); 
-  }
 
 
 }

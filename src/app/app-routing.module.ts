@@ -81,7 +81,7 @@ const routes: Routes = [
   },
   {
     title: "bikes-forsale",
-    path: 'bikes-forsale',
+    path: 'bikes_forSale',
     component: BikesForsaleComponent
   },
   {
@@ -96,7 +96,7 @@ const routes: Routes = [
   },
   {
     title: "bikes-forRent",
-    path: 'bikes-forRent',
+    path: 'bikes_forRent',
     component: BikesForRentComponent
   },
   {

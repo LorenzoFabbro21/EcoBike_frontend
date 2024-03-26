@@ -65,7 +65,6 @@ export class BiciclettaVenditaComponent implements OnInit{
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     this.route.queryParams.subscribe(params => {
       this.id = JSON.parse(params['idBike']);
-      this.prezzo = JSON.parse(params['price']);
     });
 
     this.ebService.get_bicicletta(this.id).subscribe({

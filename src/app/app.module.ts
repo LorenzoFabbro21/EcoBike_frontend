@@ -46,7 +46,7 @@ import { DetailsBikeToRentModule } from './pages/details-bike-to-rent/details-bi
     SignupModule,
     ErrorDialogModule,
     PersonalAreaModule,
-    ShopFormModule
+    ShopFormModule,
     BikesSoldModule,
     BikesForsaleModule,
     DettagliBikeToSellModule,

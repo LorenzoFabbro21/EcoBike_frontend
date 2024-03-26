@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoggedUser } from 'src/app/classes/user';
 import { Taglia } from 'src/app/enum/tagliaEnum';
 import { adSell } from 'src/app/interfaces/adSell';
@@ -33,10 +34,10 @@ export class FormVenditaComponent {
   tipologia!:string;
   prezzo!:number;
   misure!:string;
-  img?:any;
+  img?:string= "";
   mostraSpinner: boolean= false;
 
-  constructor ( private ebService: EcobikeApiService, private userService : UserLoggedService) {
+  constructor ( private router: Router, private ebService: EcobikeApiService, private userService : UserLoggedService) {
     
     /* if ( userService.userLogged ) {
       this.userLogged = userService.userLogged;
@@ -70,16 +71,25 @@ export class FormVenditaComponent {
   send () {
     
     const reader = new FileReader();
+    let count = 0;
+    const readNextFile = () => {
+      if (count < this.uploadedFiles.length) {
+        const file = this.uploadedFiles[count];
+        reader.onload = (e) => {
+          const base64String = (e.target as any).result;
+          this.img= this.img + base64String;
+          count++;
+          readNextFile(); // Leggi il prossimo file in modo ricorsivo
+        };
 
-    reader.onload = (e) => {
-      const base64String = (e.target as any).result;
-      this.img= base64String;
-      this.postBike();
-    };
-
-    reader.readAsDataURL(this.uploadedFiles[0]);
-
+        reader.readAsDataURL(file);
+      } else {
+      this.postBike(); 
+      }
   }
+
+  readNextFile();
+}
 
   postBike() {
     this.mostraSpinner = true;
@@ -102,8 +112,9 @@ export class FormVenditaComponent {
   
           let adSell: adSell;
           adSell = {
-          price:this.prezzo,
-          idBike:idBike
+            price:this.prezzo,
+            idBike:idBike,
+            idUser: this.userLogged?.id
           }
           this.ebService.new_vendita(adSell,token).subscribe({
             next: (response:adSell) => {
@@ -111,7 +122,7 @@ export class FormVenditaComponent {
               
               setTimeout(() => {
                 this.mostraSpinner = false;
-                window.location.reload();
+                this.router.navigate(['/']);
               }, 3500);
           }
           });

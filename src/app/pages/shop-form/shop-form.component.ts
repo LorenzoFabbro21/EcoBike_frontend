@@ -22,44 +22,47 @@ export class ShopFormComponent {
   }
   send() {
 
-    if (this.userService.userLogged!= null && this.userService.userLogged?.token !== undefined && this.userService.userLogged.id && this.userService.userLogged.mail) {  
+    if (this.userService.userLogged !== null && this.userService.userLogged?.token !== undefined && this.userService.userLogged.mail !== undefined) {  
       let token : string = this.userService.userLogged?.token;
       const user_private = this.userService.userLogged;
       this.ebService.getPrivateUser(this.userService.userLogged.mail).subscribe({
         next: (user:User) => {
-          this.ebService.delete_private(this.userService.userLogged!.id, token).subscribe({
-            next: (response: any) => {
-              this.ebService.new_dealer(user, token).subscribe({
-                next: (dealer: User) => {
-                  const shop: Shop = {
-                    name: this.shop_name,
-                    address: this.address,
-                    city: this.city,
-                    phoneNumber: this.phone_number,
-                    idUser: dealer.id
-                  };
-                  this.ebService.new_shop(shop, token).subscribe({
-                    next: (response: any) => {
-                      console.log(response);
-                      const userLogged: LoggedUser = {
-                        id: dealer.id,
-                        name: dealer.name,
-                        lastName: dealer.lastName,
-                        token: token,
-                        mail : dealer.mail,
-                        exp: user_private.exp,
-                        phoneNumber: response.phoneNumber,
-                        type:"d"
+          if ( this.userService.userLogged?.id !== undefined) {
+            this.ebService.delete_private(this.userService.userLogged.id!, token).subscribe({
+              next: (response: any) => {
+                this.ebService.new_dealer(user, token).subscribe({
+                  next: (dealer: User) => {
+                    const shop: Shop = {
+                      name: this.shop_name,
+                      address: this.address,
+                      city: this.city,
+                      phoneNumber: this.phone_number,
+                      idUser: dealer.id
+                    };
+                    this.ebService.new_shop(shop, token).subscribe({
+                      next: (response: any) => {
+                        console.log(response);
+                        const userLogged: LoggedUser = {
+                          id: dealer.id,
+                          name: dealer.name,
+                          lastName: dealer.lastName,
+                          token: token,
+                          mail : dealer.mail,
+                          exp: user_private.exp,
+                          phoneNumber: response.phoneNumber,
+                          type:"d"
+                        }
+                        this.userService.logout();
+                        this.userService.login(userLogged);
+                        this.router.navigate(['/personal_area']);
                       }
-                      this.userService.logout();
-                      this.userService.login(userLogged);
-                      this.router.navigate(['/personal_area']);
-                    }
-                  });
-                }
-              });
-            }
-          });
+                    });
+                  }
+                });
+              }
+            });
+          }
+          
         } 
       });
     }

@@ -156,7 +156,7 @@ export class BiciclettaNoleggioComponent {
 
     
     const booking: Booking = {
-      idPrivate : 1,
+      idPrivate : this.userService.userLogged?.id,
       idAnnouncement: this.idAnnuncio,
       startdate : this.date,
       enddate: this.date

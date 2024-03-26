@@ -23,7 +23,7 @@ export class PersonalAreaComponent {
     else {
       this.image = 'assets/images/user.jpg';
     }
-    if (userService.userLogged?.type == 'd' && userService.userLogged?.token != undefined && userService.userLogged?.mail != undefined) {
+    if (userService.userLogged?.type == 'd' && userService.userLogged?.token != undefined && userService.userLogged?.mail != undefined && userService.userLogged?.id != undefined) {
       const token : string = userService.userLogged?.token;
       this.ebService.getShopFromUser(userService.userLogged?.id, token).subscribe({
         next: (response:Shop) => {
