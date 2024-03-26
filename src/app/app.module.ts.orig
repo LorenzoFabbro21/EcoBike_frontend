@@ -17,12 +17,16 @@ import { AuthenticationModule } from './pages/authentication/authentication.modu
 import { SignupModule } from './pages/signup/signup.module';
 import { ErrorDialogModule } from './modules/error-dialog/error-dialog.module';
 import { BikesSoldModule } from './pages/bikes-sold/bikes-sold.module';
+<<<<<<< HEAD
 import { PersonalAreaModule } from './pages/personal-area/personal-area.module';
 import { ShopFormModule } from './pages/shop-form/shop-form.module';
+
+=======
 import { BikesForsaleModule } from './pages/bikes-forsale/bikes-forsale.module';
 import { DettagliBikeToSellModule } from './pages/dettagli-bike-to-sell/dettagli-bike-to-sell.module';
 import { BikesForRentModule } from './pages/bikes-for-rent/bikes-for-rent.module';
 import { DetailsBikeToRentModule } from './pages/details-bike-to-rent/details-bike-to-rent.module';
+>>>>>>> origin/detailsBike-toSell/toRent
 
 
 @NgModule({
@@ -44,14 +48,18 @@ import { DetailsBikeToRentModule } from './pages/details-bike-to-rent/details-bi
     LoginFormModule,
     AuthenticationModule,
     SignupModule,
+<<<<<<< HEAD
     ErrorDialogModule,
+    BikesSoldModule,
     PersonalAreaModule,
     ShopFormModule
+=======
     BikesSoldModule,
     BikesForsaleModule,
     DettagliBikeToSellModule,
     BikesForRentModule,
     DetailsBikeToRentModule
+>>>>>>> origin/detailsBike-toSell/toRent
   ],
   providers: [],
   bootstrap: [AppComponent]

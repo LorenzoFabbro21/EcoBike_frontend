@@ -278,6 +278,8 @@ export class EcobikeApiService {
     });
   }
 
+<<<<<<< HEAD
+=======
  /**
   * Restituisce l'elenco delle vendite di un utente
   *
@@ -295,6 +297,7 @@ export class EcobikeApiService {
   public list_bikes_forsale_by_user(id : number): Observable<Bicicletta[]> {
     return this.httpClient.get<Bicicletta[]>(`${this.url}/adsell/user/` + id + `/bikes`); 
   }
+>>>>>>> origin/detailsBike-toSell/toRent
 
   /**
   * Restituisce l'elenco delle bike in noleggio di un utente

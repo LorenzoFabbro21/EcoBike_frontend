@@ -11,12 +11,15 @@ import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { BikesSoldComponent } from './pages/bikes-sold/bikes-sold.component';
+<<<<<<< HEAD
 import { PersonalAreaComponent } from './pages/personal-area/personal-area.component';
 import { ShopFormComponent } from './pages/shop-form/shop-form.component';
+=======
 import { BikesForsaleComponent } from './pages/bikes-forsale/bikes-forsale.component';
 import { DettagliBikeToSellComponent } from './pages/dettagli-bike-to-sell/dettagli-bike-to-sell.component';
 import { BikesForRentComponent } from './pages/bikes-for-rent/bikes-for-rent.component';
 import { DetailsBikeToRentComponent } from './pages/details-bike-to-rent/details-bike-to-rent.component';
+>>>>>>> origin/detailsBike-toSell/toRent
 
 const routes: Routes = [
   {
@@ -75,19 +78,19 @@ const routes: Routes = [
     component: BikesSoldComponent
   },
   {
+<<<<<<< HEAD
     title: "personal-area",
     path: 'personal_area',
     component: PersonalAreaComponent
   },
   {
-    title: "bikes-forsale",
-    path: 'bikes-forsale',
-    component: BikesForsaleComponent
-  },
-  {
     title: "shop-form",
     path: 'new_shop',
     component: ShopFormComponent
+=======
+    title: "bikes-forsale",
+    path: 'bikes-forsale',
+    component: BikesForsaleComponent
   },
   {
     title: "dettagli-bike-to-sell",
@@ -103,6 +106,7 @@ const routes: Routes = [
     title: "details-bike-to-rent",
     path: 'details-bike-to-rent',
     component: DetailsBikeToRentComponent
+>>>>>>> origin/detailsBike-toSell/toRent
   }
 ];
 @NgModule({

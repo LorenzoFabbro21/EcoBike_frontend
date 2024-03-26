@@ -3,7 +3,7 @@ export class LoggedUser implements User {
     constructor () {
       return;
     }
-    id!: number;
+    id?: number;
     name?: string;
     lastName?: string;
     token?: string;
@@ -16,8 +16,7 @@ export class LoggedUser implements User {
   }
   
   export interface User {
-    
-    id: number;
+    id?: number;
     name?: string;
     lastName?: string;
     mail?: string;

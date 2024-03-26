@@ -19,6 +19,9 @@ export class EbikeComponent implements OnInit{
   @Input()
     prezzo?: number = 0;
 
+  @Input()
+    owned?: boolean = false;
+
   typeAd: string = "";
   firstImage:string = "";
   constructor ( private router: Router, private ebService: EcobikeApiService) {
@@ -68,11 +71,21 @@ export class EbikeComponent implements OnInit{
         idBike: this.bicicletta?.id
       }
     };
-    if ( this.typeAd == "R") {
-      this.router.navigate(['/dettagli_noleggio'], navigationExtras);
+    if (this.owned == false){
+      if ( this.typeAd == "R") {
+        this.router.navigate(['/dettagli_noleggio'], navigationExtras);
+      }
+      else {
+        this.router.navigate(['/dettagli_vendita'], navigationExtras);
+      }
     }
     else {
-      this.router.navigate(['/dettagli_vendita'], navigationExtras);
+      if ( this.typeAd == "R") {
+        this.router.navigate(['/details-bike-to-rent'], navigationExtras);
+      }
+      else {
+        this.router.navigate(['/dettagli-bike-to-sell'], navigationExtras);
+      }
     }
   }
 }
