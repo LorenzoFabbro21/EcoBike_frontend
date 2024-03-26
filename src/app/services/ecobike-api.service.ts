@@ -10,6 +10,7 @@ import { loginRequest } from '../classes/loginRequest';
 import { signupRequest } from '../classes/signupRequest';
 import { userBikeInfo } from '../interfaces/userBikeInfo';
 import { User } from '../classes/user';
+import { Shop } from '../interfaces/shop';
 
 @Injectable({
   providedIn: 'root'
@@ -192,6 +193,12 @@ export class EcobikeApiService {
   }
   */
 
+  getShopFromUser(id: number, token: string) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.httpClient.get<Shop>(`${this.url}/shop/user/` + id, {headers});
+  }
 
   getPrivateUser(email: string) {
     return this.httpClient.get<User>(`${this.url}/private/email/` + email);
@@ -200,7 +207,60 @@ export class EcobikeApiService {
   getDealer(email: string) {
     return this.httpClient.get<User>(`${this.url}/dealer/email/` + email);
   }
+ /**
+  * Restituisce l'elenco delle vendite di un utente
+  *
+  * Endpoint Rest: appointment/user/{id}/bikes
+  */
+ public list_bikes_sold_by_user(id : number): Observable<userBikeInfo[]> {
+  return this.httpClient.get<userBikeInfo[]>(`${this.url}/appointment/user/` + id + "/bikes"); 
+}
 
+
+  /**
+ * Inserisce un nuovo shop
+ *
+ * Endpoint Rest: shop
+ */
+  public new_shop(shop: Shop, token: string){
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }); 
+    let options = { headers: headers };
+    return this.httpClient.post<Booking>(`${this.url}/shop`, shop, options);
+  }
+
+  /**
+ * Elimina un utente privato
+ *
+ * Endpoint Rest: /private
+ */
+  public delete_private(id: number, token: string){
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }); 
+    let options = { headers: headers };
+    return this.httpClient.delete<signupRequest>(`${this.url}/private/` + id, options);
+  }
+
+   /**
+ * crea un nuovo commerciante
+ *
+ * Endpoint Rest: /dealer
+ */
+   public new_dealer(user: User, token: string){
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }); 
+    let options = { headers: headers };
+    return this.httpClient.post<User>(`${this.url}/dealer`, user, options);
+  }
 
 
   handleError(error: any) {
@@ -216,15 +276,6 @@ export class EcobikeApiService {
     return throwError(() => {
       return errorMessage;
     });
-  }
-
- /**
-  * Restituisce l'elenco delle vendite di un utente
-  *
-  * Endpoint Rest: appointment/user/{id}/bikes
-  */
-  public list_bikes_sold_by_user(id : number): Observable<userBikeInfo[]> {
-    return this.httpClient.get<userBikeInfo[]>(`${this.url}/appointment/user/` + id + "/bikes"); 
   }
 
 

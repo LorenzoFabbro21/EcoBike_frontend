@@ -166,5 +166,12 @@
     border-color: #01aaa9;
 }
 
+.custom-menubar .p-menubar-root-list .p-submenu-list {
+  left: 0 !important;
+}
+
+.custom-menubar .p-submenu-list {
+  top: 100% !important;
+}
 
 

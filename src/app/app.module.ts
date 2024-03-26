@@ -17,6 +17,8 @@ import { AuthenticationModule } from './pages/authentication/authentication.modu
 import { SignupModule } from './pages/signup/signup.module';
 import { ErrorDialogModule } from './modules/error-dialog/error-dialog.module';
 import { BikesSoldModule } from './pages/bikes-sold/bikes-sold.module';
+import { PersonalAreaModule } from './pages/personal-area/personal-area.module';
+import { ShopFormModule } from './pages/shop-form/shop-form.module';
 
 
 
@@ -40,7 +42,9 @@ import { BikesSoldModule } from './pages/bikes-sold/bikes-sold.module';
     AuthenticationModule,
     SignupModule,
     ErrorDialogModule,
-    BikesSoldModule
+    BikesSoldModule,
+    PersonalAreaModule,
+    ShopFormModule
   ],
   providers: [],
   bootstrap: [AppComponent]

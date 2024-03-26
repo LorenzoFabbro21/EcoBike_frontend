@@ -27,10 +27,10 @@ export class SignupComponent {
   }
   signup() {
     const signup : signupRequest =  {
-      nome: this.first_name,
-      cognome: this.last_name,
+      name: this.first_name,
+      lastName: this.last_name,
       mail: this.mail,
-      telefono: this.phone_number,
+      phoneNumber: this.phone_number,
       password: this.password
     }
 
