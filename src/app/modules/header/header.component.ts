@@ -15,39 +15,41 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit() {
     this.items = [
-        {
-            label: this.userLogged?.name,
-            icon: 'pi pi-fw pi-user',
-            class: 'menubar',
-            items: [
-                {
-                    label: 'Your bikes',
-                    icon: 'pi pi-fw pi-user-plus',
-                    items: [
-                      {
-                          label: 'For sale',
-                          icon: 'pi pi-fw pi-filter',
-                          routerLink: 'bike-for-sale'
-                      },
-                      {
-                          icon: 'pi pi-fw pi-bars',
-                          label: 'For rent',
-                          routerLink: 'bikes-for-rent'
-                      }
-                  ]
-                },
-                {
-                  label: 'Bikes sold',
-                  icon: 'pi pi-fw pi-users',
-                  routerLink: 'bikes-sold'
-                },
-                {
-                  label: 'Bikes rented',
-                  icon: 'pi pi-fw pi-users',
-                  routerLink: 'bikes-rented'
-                }
-            ]
-        }
+      {
+        label: this.userLogged?.name,
+        icon: 'pi pi-fw pi-user',
+        class: 'menubar',
+        items: [
+          {
+            label: 'E-bike in vendita',
+            icon: 'pi pi-fw pi-filter',
+            routerLink: 'bike-for-sale'
+          },
+          {
+            icon: 'pi pi-fw pi-bars',
+            label: 'E-bike in noleggio',
+            routerLink: 'bikes-for-rent'
+          },
+          {
+            label: 'E-bike vendute',
+            icon: 'pi pi-fw pi-users',
+            routerLink: 'bikes-sold'
+          },
+          {
+            label: 'E-bike noleggiate',
+            icon: 'pi pi-fw pi-users',
+            routerLink: 'bikes-rented'
+          },
+          {
+            separator: true
+          },
+          {
+            label: 'Informazioni personali',
+            icon: 'pi pi-fw pi-users',
+            routerLink: 'personal_area'
+          }
+        ]
+      }
     ];
     console.log( this.items);
 }
