@@ -16,11 +16,12 @@ import { CalendarModule } from 'primeng/calendar';
 import { RatingModule } from 'primeng/rating';
 import { DataViewModule } from 'primeng/dataview';
 import { DropdownModule } from 'primeng/dropdown';
+import {  ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [ReviewsComponentComponent],
-  imports: [CommonModule, ButtonModule, AppRoutingModule, AutoCompleteModule, FileUploadModule, BrowserAnimationsModule,HttpClientModule,InputTextModule,FormsModule,EbikeModule, CardModule, AccordionModule,CalendarModule, RatingModule, DataViewModule, DropdownModule],
+  imports: [CommonModule, ButtonModule, AppRoutingModule, AutoCompleteModule, FileUploadModule, BrowserAnimationsModule,HttpClientModule,InputTextModule,FormsModule,EbikeModule, CardModule, AccordionModule,CalendarModule, RatingModule, DataViewModule, DropdownModule,ReactiveFormsModule],
   exports: [ReviewsComponentComponent]
 })
 export class ReviewsComponentModule {}

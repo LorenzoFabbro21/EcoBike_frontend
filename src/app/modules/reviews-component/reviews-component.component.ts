@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/classes/user';
+import { User } from 'src/app/interfaces/user';
 import { Review } from 'src/app/interfaces/review';
 import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
 import { ReviewUser } from 'src/app/interfaces/reviewUser';
 import { SelectItem } from 'primeng/api';
+import { reviewProva } from 'src/app/interfaces/reviewProva';
 
 @Component({
   selector: 'app-reviews-component',
@@ -11,12 +12,14 @@ import { SelectItem } from 'primeng/api';
   styleUrls: ['./reviews-component.component.scss']
 })
 export class ReviewsComponentComponent implements OnInit{
-
+  
   userInfo?: User;
   reviews: Review[] = [];
-  idBike?: number;
+  idShop?: any;
   reviewUser: ReviewUser[] = [];
   showData: boolean = false;
+  products : reviewProva[]= [];
+
 
   sortOptions!: SelectItem[];
 
@@ -24,7 +27,46 @@ export class ReviewsComponentComponent implements OnInit{
 
   sortField!: string;
 
-  constructor (private ebService: EcobikeApiService) {}  
+  constructor (private ebService: EcobikeApiService) {
+
+    this.idShop = new URLSearchParams(window.location.search);
+    //input: id della bici di cui prendere le recensioni
+    //prende le recensioni e poi in base all'id della recensione crea un nuovo oggetto con la recensione e nome e cognome di chi l'ha fatta 
+    this.ebService.getReviewsByShop(this.idShop).subscribe({
+      next: (response: Review[]) => {
+        if(response != null) {
+          this.reviews = response;
+          let index = 0;
+          this.reviews.forEach(r => {
+            this.ebService.getPrivateById(r.idUser).subscribe({
+              next: (response: User) => {
+                if(response != null) {
+                  this.userInfo = response;
+                  const obj: ReviewUser = {
+                    review: r,
+                    user: response
+                  };
+
+                  console.log(obj);
+                  this.reviewUser.push(obj);
+                  const obj2: reviewProva = {
+                    id: obj.review?.id,
+                    text:obj.review?.text,
+                    score: obj.review?.score,
+                    nome: obj.user?.nome,
+                    cognome: obj.user?.cognome
+                  };
+                  this.products.push(obj2);
+                }
+              }
+            });
+          });
+          
+        }
+      }
+    }); 
+  
+  }  
 
  
 
@@ -37,35 +79,9 @@ export class ReviewsComponentComponent implements OnInit{
       { label: 'Price Low to High', value: 'score' }
   ];
 
-    setTimeout(() => {
-      this.showData = true;
-    }, 1000); // Ritardo di 3 secondi (3000 millisecondi)
+    
 
-    //input: id della bici di cui prendere le recensioni
-    //prende le recensioni e poi in base all'id della recensione crea un nuovo oggetto con la recensione e nome e cognome di chi l'ha fatta 
-    this.ebService.getReviewsByBike(1).subscribe({
-      next: (response: Review[]) => {
-        if(response != null) {
-          this.reviews = response;
-          this.reviews.forEach(r => {
-            this.ebService.getPrivateById(r.idUser).subscribe({
-              next: (response: User) => {
-                if(response != null) {
-                  this.userInfo = response;
-                  const obj: ReviewUser = {
-                    review: r,
-                    user: response
-                  };
-                  console.log(obj);
-                  this.reviewUser.push(obj);
-                }
-              }
-            });
-          });
-        }
-      }
-    }); 
-  }
+}
 
 
 

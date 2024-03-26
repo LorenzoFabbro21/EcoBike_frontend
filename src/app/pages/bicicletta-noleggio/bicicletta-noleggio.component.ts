@@ -7,6 +7,7 @@ import { Booking } from 'src/app/interfaces/booking';
 import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
 import { UserLoggedService } from 'src/app/services/user-logged.service';
 
+
 @Component({
   selector: 'app-bicicletta-noleggio',
   templateUrl: './bicicletta-noleggio.component.html',

@@ -1,4 +1,4 @@
-import { User } from "../classes/user";
+import { User } from "../interfaces/user";
 import { Review } from "./review";
 
 export interface ReviewUser {

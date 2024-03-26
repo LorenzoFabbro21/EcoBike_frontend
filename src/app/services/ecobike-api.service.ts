@@ -214,8 +214,8 @@ export class EcobikeApiService {
   }
 
 
-  getReviewsByBike(idBike: number) {
-    return this.httpClient.get<Review[]>(`${this.url}/review`);    //da implementare nel backend e scrivere uri giusto
+  getReviewsByShop(idBike: number) {
+    return this.httpClient.get<Review[]>(`${this.url}/review/bike/` + idBike);    //da implementare nel backend e scrivere uri giusto
   }
 
   handleError(error: any) {
