@@ -53,10 +53,11 @@ export class LoginFormComponent implements OnInit {
                   const userLogged: LoggedUser = {
                     id: response.id,
                     name: decoded.name,
-                    last_name: decoded.last_name,
+                    lastName: decoded.last_name,
                     token: token,
-                    email : decoded.sub,
+                    mail : decoded.sub,
                     exp:decoded.exp,
+                    phoneNumber: response.phoneNumber,
                     type:"d"
                   
                     //picture volendo
@@ -70,9 +71,9 @@ export class LoginFormComponent implements OnInit {
               const userLogged: LoggedUser = {
                 id: response.id,
                 name: decoded.name,
-                last_name: decoded.last_name,
+                lastName: decoded.last_name,
                 token: token,
-                email : decoded.sub,
+                mail : decoded.sub,
                 exp:decoded.exp,
                 type:"p"
               

@@ -34,13 +34,12 @@ export class AuthenticationComponent implements OnInit {
                   const userLogged: LoggedUser = {
                     id: response.id,
                     name: decoded.name,
-                    last_name: decoded.last_name,
+                    lastName: decoded.last_name,
                     token: this.token,
-                    email : decoded.sub,
+                    mail : decoded.sub,
                     exp:decoded.exp,
-                    type:"d"
-                  
-                    //picture volendo
+                    type:"d",
+                    image: decoded.picture
                   }
                   this.userLogin.login(userLogged);
                   this.router.navigate(['/']);
@@ -51,12 +50,12 @@ export class AuthenticationComponent implements OnInit {
               const userLogged: LoggedUser = {
                 id: response.id,
                 name: decoded.name,
-                last_name: decoded.last_name,
+                lastName: decoded.last_name,
                 token: this.token,
-                email : decoded.sub,
+                mail : decoded.sub,
                 exp:decoded.exp,
-                type:"p"
-                //picture volendo
+                type:"p",
+                image: decoded.picture
               }
               this.userLogin.login(userLogged);
               this.router.navigate(['/']);

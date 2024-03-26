@@ -39,7 +39,7 @@ export class FormNoleggioComponent {
   img?:string= "";
   mostraSpinner: boolean = false;
 
-  constructor ( private router: Router, private ebService: EcobikeApiService, private userService : UserLoggedService) {
+  constructor (private router: Router, private ebService: EcobikeApiService, private userService : UserLoggedService) {
     
     /* if ( userService.userLogged ) {
       this.userLogged = userService.userLogged;
@@ -73,24 +73,21 @@ export class FormNoleggioComponent {
   send () {
     
     const reader = new FileReader();
-let count = 0;
+    let count = 0;
+    const readNextFile = () => {
+      if (count < this.uploadedFiles.length) {
+        const file = this.uploadedFiles[count];
+        reader.onload = (e) => {
+          const base64String = (e.target as any).result;
+          this.img= this.img + base64String;
+          count++;
+          readNextFile(); // Leggi il prossimo file in modo ricorsivo
+        };
 
-const readNextFile = () => {
-  if (count < this.uploadedFiles.length) {
-    const file = this.uploadedFiles[count];
-    reader.onload = (e) => {
-      const base64String = (e.target as any).result;
-      this.img= this.img + base64String;
-      count++;
-      readNextFile(); // Leggi il prossimo file in modo ricorsivo
-    };
-
-    reader.readAsDataURL(file);
-  } else {
-   this.postBike(); 
-  }
-
-
+        reader.readAsDataURL(file);
+      } else {
+      this.postBike(); 
+      }
   }
 
   readNextFile();
@@ -119,7 +116,8 @@ const readNextFile = () => {
           let adRent: adRent;
           adRent = {
           price:this.prezzo,
-          idBike:idBike
+          idBike:idBike,
+          idUser: this.userLogged?.id
           }
           this.ebService.new_noleggio(adRent, token).subscribe({
             next: (response:adRent) => {

@@ -4,5 +4,4 @@ export interface adSell {
     price?: number;
     idBike?: number;
     idUser?: number;
-  
   }

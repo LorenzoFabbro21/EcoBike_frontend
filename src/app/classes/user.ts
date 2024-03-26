@@ -5,18 +5,22 @@ export class LoggedUser implements User {
     }
     id?: number;
     name?: string;
-    last_name?: string;
+    lastName?: string;
     token?: string;
-    email?:string;
+    mail?:string;
+    phoneNumber?: string;
+    image?: string;
     exp?:number;
     type?:string;
+    
   }
   
   export interface User {
-    
     id?: number;
     name?: string;
-    last_name?: string;
-    email?: string;
+    lastName?: string;
+    mail?: string;
+    phoneNumber?: string;
+    image?: string
   }
   
