@@ -5,22 +5,51 @@ import { Shop } from 'src/app/interfaces/shop';
 import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
 import { UserLoggedService } from 'src/app/services/user-logged.service';
 
+interface UploadEvent {
+  originalEvent: Event;
+  files: File[];
+}
+
 @Component({
   selector: 'app-shop-form',
   templateUrl: './shop-form.component.html',
   styleUrls: ['./shop-form.component.scss']
 })
 export class ShopFormComponent {
-
+  uploadFile: any;
   shop_name?: string;
   city?: string;
   address?: string;
   phone_number?: string;
+  img?:string= "";
 
   constructor(private userService: UserLoggedService, private ebService: EcobikeApiService, private router: Router) {
 
   }
-  send() {
+
+
+  onUpload(event:UploadEvent| any) {
+    for(let file of event.files) {
+      this.uploadFile = file;
+  }
+  }
+
+
+  send () {
+    
+    const reader = new FileReader();
+        const file = this.uploadFile;
+        reader.onload = (e) => {
+          const base64String = (e.target as any).result;
+          this.img= this.img + base64String;
+          this.createShop(); 
+      }
+      reader.readAsDataURL(file);
+
+  }
+
+
+  createShop() {
 
     if (this.userService.userLogged !== null && this.userService.userLogged?.token !== undefined && this.userService.userLogged.mail !== undefined) {  
       let token : string = this.userService.userLogged?.token;
@@ -37,6 +66,7 @@ export class ShopFormComponent {
                       address: this.address,
                       city: this.city,
                       phoneNumber: this.phone_number,
+                      img: this.img,
                       idUser: dealer.id
                     };
                     this.ebService.new_shop(shop, token).subscribe({

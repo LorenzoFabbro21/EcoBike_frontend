@@ -9,10 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ErrorDialogModule } from 'src/app/modules/error-dialog/error-dialog.module';
+import { FileUploadModule } from 'primeng/fileupload';
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [ShopFormComponent],
-  imports: [CommonModule, ButtonModule, AppRoutingModule, AutoCompleteModule, BrowserAnimationsModule,HttpClientModule,InputTextModule,FormsModule,ErrorDialogModule ],
+  imports: [CommonModule, ButtonModule, AppRoutingModule, AutoCompleteModule, BrowserAnimationsModule,HttpClientModule,InputTextModule,FormsModule,ErrorDialogModule,FileUploadModule ],
   exports: [ShopFormComponent]
 })
 export class ShopFormModule {

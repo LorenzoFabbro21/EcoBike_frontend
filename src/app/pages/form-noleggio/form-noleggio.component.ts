@@ -41,9 +41,7 @@ export class FormNoleggioComponent {
 
   constructor (private router: Router, private ebService: EcobikeApiService, private userService : UserLoggedService) {
     
-    /* if ( userService.userLogged ) {
-      this.userLogged = userService.userLogged;
-    } */
+  
     this.tagliaList = [
       { name: 'S', code: Taglia.TagliaS },
       { name: 'M', code: Taglia.TagliaM },
@@ -117,7 +115,7 @@ export class FormNoleggioComponent {
           adRent = {
           price:this.prezzo,
           idBike:idBike,
-          idUser: this.userLogged?.id
+          idUser: this.userService.userLogged?.id
           }
           this.ebService.new_noleggio(adRent, token).subscribe({
             next: (response:adRent) => {

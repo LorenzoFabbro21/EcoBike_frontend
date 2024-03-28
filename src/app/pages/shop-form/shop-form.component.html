@@ -20,6 +20,12 @@
             <label>Numero di telefono*</label>
             <input type="text" pInputText placeholder="Inserisci il telefono del negozio" [(ngModel)]="phone_number" class="p-inputtext-lg input"/>
         </div>
+        <div class="labelCombo content-below-spinner">
+          <label>Logo del Negozio*</label>
+          <div class="card flex justify-content-center">
+            <p-fileUpload mode="basic" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" (onUpload)="onUpload($event)" chooseLabel="carica"></p-fileUpload>
+          </div>
+      </div>
       <div class="submit">
         <button pButton  label="Invia" class="button" (click)="send()"></button>
       </div>

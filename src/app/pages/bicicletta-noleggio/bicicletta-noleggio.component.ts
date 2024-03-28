@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LoggedUser } from 'src/app/classes/user';
 import { Taglia } from 'src/app/enum/tagliaEnum';
 import { adRent } from 'src/app/interfaces/adRent';
 import { Bicicletta } from 'src/app/interfaces/bicicletta';
@@ -23,8 +24,9 @@ export class BiciclettaNoleggioComponent {
   date: Date | undefined;
   idAnnuncio?:number;
   disabledDates: Date[] = [];
+  userLogged: LoggedUser | null = null;
   constructor ( private route: ActivatedRoute, private ebService: EcobikeApiService, private userService: UserLoggedService) {
-
+    this.userLogged = this.userService.userLogged;
     const oggi = new Date();
     oggi.setHours(0, 0, 0, 0);
     this.disabledDates.push(oggi);

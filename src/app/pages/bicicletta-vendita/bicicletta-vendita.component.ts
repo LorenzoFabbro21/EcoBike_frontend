@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Scroll, } from '@angular/router';
+import { LoggedUser } from 'src/app/classes/user';
 import { Taglia } from 'src/app/enum/tagliaEnum';
 import { adSell } from 'src/app/interfaces/adSell';
 import { Bicicletta } from 'src/app/interfaces/bicicletta';
 import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
+import { UserLoggedService } from 'src/app/services/user-logged.service';
 
 @Component({
   selector: 'app-bicicletta-vendita',
@@ -19,9 +21,10 @@ export class BiciclettaVenditaComponent implements OnInit{
   bikesSimili: Bicicletta[]= [];
   images: string[]= [];
   imagePrincipal: string= "";
-  idAnnuncio?: number
-  constructor ( private route: ActivatedRoute, private ebService: EcobikeApiService) {
-    
+  idAnnuncio?: number;
+  userLogged: LoggedUser | null = null;
+  constructor ( private route: ActivatedRoute, private ebService: EcobikeApiService, private userService: UserLoggedService) {
+    this.userLogged = this.userService.userLogged;
     this.bikesSimili= [
       {
       id: 1,

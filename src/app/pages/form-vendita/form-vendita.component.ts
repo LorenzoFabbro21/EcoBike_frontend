@@ -39,9 +39,6 @@ export class FormVenditaComponent {
 
   constructor ( private router: Router, private ebService: EcobikeApiService, private userService : UserLoggedService) {
     
-    /* if ( userService.userLogged ) {
-      this.userLogged = userService.userLogged;
-    } */
     this.tagliaList = [
       { name: 'S', code: Taglia.TagliaS },
       { name: 'M', code: Taglia.TagliaM },
@@ -105,6 +102,7 @@ export class FormVenditaComponent {
       img: this.img
     }
     if ( this.userService.userLogged?.token !== undefined) {
+
       let token : string = this.userService.userLogged?.token;
       this.ebService.new_bike(bike, token).subscribe(response=>{
         if( response && response.id) {
@@ -114,7 +112,7 @@ export class FormVenditaComponent {
           adSell = {
             price:this.prezzo,
             idBike:idBike,
-            idUser: this.userLogged?.id
+            idUser: this.userService.userLogged?.id
           }
           this.ebService.new_vendita(adSell,token).subscribe({
             next: (response:adSell) => {
