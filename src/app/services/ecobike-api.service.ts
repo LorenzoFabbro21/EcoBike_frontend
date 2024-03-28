@@ -10,7 +10,7 @@ import { loginRequest } from '../classes/loginRequest';
 import { signupRequest } from '../classes/signupRequest';
 import { userBikeInfo } from '../interfaces/userBikeInfo';
 import { User } from '../classes/user';
-import { shop } from '../interfaces/shop';
+import { Shop } from '../interfaces/shop';
 
 @Injectable({
   providedIn: 'root'
@@ -311,8 +311,11 @@ public list_bikes_forRent_by_user(id : number, token: string): Observable<Bicicl
   *
   * Endpoint Rest: shop
   */
-  public list_shops(): Observable<shop[]> {
-    return this.httpClient.get<shop[]>(`${this.url}/shop`); 
+  public list_shops(token: string): Observable<Shop[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.httpClient.get<Shop[]>(`${this.url}/shop`, {headers}); 
   }
 
   /**
@@ -320,8 +323,11 @@ public list_bikes_forRent_by_user(id : number, token: string): Observable<Bicicl
   *
   * Endpoint Rest: shop
   */
-  public get_shop(id: number): Observable<shop> {
-    return this.httpClient.get<shop>(`${this.url}/shop/` + id); 
+  public get_shop(id: number, token: string): Observable<Shop> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.httpClient.get<Shop>(`${this.url}/shop/` + id, {headers}); 
   }
 
 }

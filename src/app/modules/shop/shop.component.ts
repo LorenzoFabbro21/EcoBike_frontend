@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { shop } from 'src/app/interfaces/shop';
+import { Shop } from 'src/app/interfaces/shop';
 
 @Component({
   selector: 'app-shop',
@@ -10,7 +10,7 @@ import { shop } from 'src/app/interfaces/shop';
 export class ShopComponent {
   
   @Input()
-    shop?: shop
+    shop?: Shop
 
   constructor ( private router: Router) {
     
