@@ -11,6 +11,8 @@ import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { BikesSoldComponent } from './pages/bikes-sold/bikes-sold.component';
+import { PersonalAreaComponent } from './pages/personal-area/personal-area.component';
+import { ShopFormComponent } from './pages/shop-form/shop-form.component';
 import { BikesForsaleComponent } from './pages/bikes-forsale/bikes-forsale.component';
 import { DettagliBikeToSellComponent } from './pages/dettagli-bike-to-sell/dettagli-bike-to-sell.component';
 import { BikesForRentComponent } from './pages/bikes-for-rent/bikes-for-rent.component';
@@ -74,9 +76,19 @@ const routes: Routes = [
     component: BikesSoldComponent
   },
   {
+    title: "personal-area",
+    path: 'personal_area',
+    component: PersonalAreaComponent
+  },
+  {
     title: "bikes-forsale",
-    path: 'bikes-forsale',
+    path: 'bikes_forSale',
     component: BikesForsaleComponent
+  },
+  {
+    title: "shop-form",
+    path: 'new_shop',
+    component: ShopFormComponent
   },
   {
     title: "dettagli-bike-to-sell",
@@ -85,7 +97,7 @@ const routes: Routes = [
   },
   {
     title: "bikes-forRent",
-    path: 'bikes-forRent',
+    path: 'bikes_forRent',
     component: BikesForRentComponent
   },
   {

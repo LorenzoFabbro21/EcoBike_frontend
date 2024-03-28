@@ -15,7 +15,10 @@ import { BiciclettaNoleggioModule } from './pages/bicicletta-noleggio/bicicletta
 import { LoginFormModule } from './pages/login-form/login-form.module';
 import { AuthenticationModule } from './pages/authentication/authentication.module';
 import { SignupModule } from './pages/signup/signup.module';
+import { ErrorDialogModule } from './modules/error-dialog/error-dialog.module';
 import { BikesSoldModule } from './pages/bikes-sold/bikes-sold.module';
+import { PersonalAreaModule } from './pages/personal-area/personal-area.module';
+import { ShopFormModule } from './pages/shop-form/shop-form.module';
 import { BikesForsaleModule } from './pages/bikes-forsale/bikes-forsale.module';
 import { DettagliBikeToSellModule } from './pages/dettagli-bike-to-sell/dettagli-bike-to-sell.module';
 import { BikesForRentModule } from './pages/bikes-for-rent/bikes-for-rent.module';
@@ -43,6 +46,9 @@ import { DetailsShopModule } from './pages/details-shop/details-shop.module';
     LoginFormModule,
     AuthenticationModule,
     SignupModule,
+    ErrorDialogModule,
+    PersonalAreaModule,
+    ShopFormModule,
     BikesSoldModule,
     BikesForsaleModule,
     DettagliBikeToSellModule,

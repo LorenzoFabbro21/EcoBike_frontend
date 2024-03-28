@@ -37,5 +37,15 @@
       </div>
   </div>
 </section>
+
+<app-error-dialog
+      [showModal]="showError"
+      [headerText]="errorStatus"
+      [label]="errorMessage"
+      (showModalChange)="changeValue($event)"
+
+    />
+
+
   
   

@@ -14,44 +14,44 @@ export class HeaderComponent implements OnInit{
   userName?: string;
 
   ngOnInit() {
-    this.userService.login(this.userProva);
-    this.userName = this.userProva.name;
-    
     this.items = [
-        {
-            label: this.userName,
-            icon: 'pi pi-fw pi-user',
-            class: 'menubar',
-            items: [
-                {
-                    label: 'Your bikes',
-                    icon: 'pi pi-fw pi-user-plus',
-                    items: [
-                      {
-                          label: 'For sale',
-                          icon: 'pi pi-fw pi-filter',
-                          routerLink: 'bikes-forsale'
-                      },
-                      {
-                          icon: 'pi pi-fw pi-bars',
-                          label: 'For rent',
-                          routerLink: 'bikes-forRent'
-                      }
-                  ]
-                },
-                {
-                  label: 'Bikes sold',
-                  icon: 'pi pi-fw pi-users',
-                  routerLink: 'bikes-sold'
-                },
-                {
-                  label: 'Bikes rented',
-                  icon: 'pi pi-fw pi-users',
-                  routerLink: 'bikes-rented'
-                }
-            ]
-        }
+      {
+        label: this.userLogged?.name,
+        icon: 'pi pi-fw pi-user',
+        class: 'menubar',
+        items: [
+          {
+            label: 'E-bike in vendita',
+            icon: 'pi pi-fw pi-filter',
+            routerLink: 'bikes_forSale'
+          },
+          {
+            icon: 'pi pi-fw pi-bars',
+            label: 'E-bike in noleggio',
+            routerLink: 'bikes_forRent'
+          },
+          {
+            label: 'E-bike vendute',
+            icon: 'pi pi-fw pi-users',
+            routerLink: 'bikes-sold'
+          },
+          {
+            label: 'E-bike noleggiate',
+            icon: 'pi pi-fw pi-users',
+            routerLink: 'bikes-rented'
+          },
+          {
+            separator: true
+          },
+          {
+            label: 'Informazioni personali',
+            icon: 'pi pi-fw pi-users',
+            routerLink: 'personal_area'
+          }
+        ]
+      }
     ];
+    console.log( this.items);
 }
 
 
@@ -73,14 +73,15 @@ export class HeaderComponent implements OnInit{
     clickButton = new EventEmitter<boolean>();
 
   userLogged: LoggedUser | null = null;
-  userProva: LoggedUser = {
-    name: "Giorgio"
-  };
   constructor ( private router: Router, private userService: UserLoggedService ) {
     
     
     this.userLogged = this.userService.bindUpdateUser((updatedUser) => {
       this.userLogged = updatedUser;
+      if ( this.items) {
+        this.items[0].label = this.userLogged?.name;
+      }
+      
     });
   }
 

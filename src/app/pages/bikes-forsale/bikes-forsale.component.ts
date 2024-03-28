@@ -16,14 +16,16 @@ export class BikesForsaleComponent{
   
   constructor (private ebService: EcobikeApiService, private userService: UserLoggedService) {
 
-    
-    this.ebService.list_bikes_forsale_by_user(1).subscribe({
-      next:(response: Bicicletta[]) => {
-        if(response != null) {
-          this.mostraSpinner = false;
-          this.bikesVendita = response;
+    if ( this.userService.userLogged?.id !== undefined && this.userService.userLogged?.token !== undefined) {
+      const token: string = this.userService.userLogged?.token;
+      this.ebService.list_bikes_forsale_by_user(this.userService.userLogged?.id, token).subscribe({
+        next:(response: Bicicletta[]) => {
+          if(response != null) {
+            this.mostraSpinner = false;
+            this.bikesVendita = response;
+          }
         }
-      }
-    });
+      });
+    }
   }
 }

@@ -10,7 +10,11 @@ import { loginRequest } from '../classes/loginRequest';
 import { signupRequest } from '../classes/signupRequest';
 import { userBikeInfo } from '../interfaces/userBikeInfo';
 import { User } from '../classes/user';
+<<<<<<< HEAD
 import { shop } from '../interfaces/shop';
+=======
+import { Shop } from '../interfaces/shop';
+>>>>>>> develop
 
 @Injectable({
   providedIn: 'root'

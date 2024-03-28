@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { User } from 'src/app/classes/user';
 import { Taglia } from 'src/app/enum/tagliaEnum';
 import { adRent } from 'src/app/interfaces/adRent';
 import { adSell } from 'src/app/interfaces/adSell';
+import { Appointment } from 'src/app/interfaces/appointment';
 import { Bicicletta } from 'src/app/interfaces/bicicletta';
 import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
 
@@ -14,10 +16,16 @@ import { EcobikeApiService } from 'src/app/services/ecobike-api.service';
 export class EbikeAdComponent implements OnInit{
 
   @Input()
-    bicicletta?: Bicicletta
+    bike?: Bicicletta
 
   @Input()
-    prezzo?: number = 0;
+    user?: User
+
+  @Input() 
+    appointment?: Appointment
+
+  @Input()
+    ad?: adSell
 
   firstImage:string = "";
   constructor ( private router: Router, private ebService: EcobikeApiService) {
@@ -25,8 +33,8 @@ export class EbikeAdComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if(this.bicicletta!== undefined && this.bicicletta.img !== undefined){
-      const splittedStrings = this.bicicletta.img.split('data:image/jpeg;base64');
+    if(this.bike!== undefined && this.bike.img !== undefined){
+      const splittedStrings = this.bike.img.split('data:image/jpeg;base64');
       const images : string[] = [];
       splittedStrings.forEach((image: string) => {
         if ( image !== "") {
@@ -40,7 +48,7 @@ export class EbikeAdComponent implements OnInit{
   clickBike() {
     const navigationExtras: NavigationExtras = {
       queryParams:{
-        idBike: this.bicicletta?.id
+        idBike: this.bike?.id
       }
     };
       this.router.navigate(['/dettagli_vendita'], navigationExtras);

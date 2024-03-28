@@ -42,6 +42,7 @@ export class VenditaComponent {
 
         if (response != null) {
           this.sells = response
+
           this.ebService.elenco_bici_vendita().subscribe({
             next: (response:Bicicletta[]) => {
       
