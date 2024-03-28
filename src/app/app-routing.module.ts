@@ -15,7 +15,8 @@ import { BikesForsaleComponent } from './pages/bikes-forsale/bikes-forsale.compo
 import { DettagliBikeToSellComponent } from './pages/dettagli-bike-to-sell/dettagli-bike-to-sell.component';
 import { BikesForRentComponent } from './pages/bikes-for-rent/bikes-for-rent.component';
 import { DetailsBikeToRentComponent } from './pages/details-bike-to-rent/details-bike-to-rent.component';
-
+import { ShopsComponent } from './pages/shops/shops.component';
+import { DetailsShopComponent } from './pages/details-shop/details-shop.component';
 const routes: Routes = [
   {
     title: '',
@@ -91,6 +92,16 @@ const routes: Routes = [
     title: "details-bike-to-rent",
     path: 'details-bike-to-rent',
     component: DetailsBikeToRentComponent
+  },
+  {
+    title: "shops",
+    path: 'shops',
+    component: ShopsComponent
+  },
+  {
+    title: "details-shop",
+    path: 'details-shop',
+    component: DetailsShopComponent
   }
 ];
 @NgModule({

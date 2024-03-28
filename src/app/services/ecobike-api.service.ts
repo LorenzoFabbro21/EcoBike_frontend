@@ -10,6 +10,7 @@ import { loginRequest } from '../classes/loginRequest';
 import { signupRequest } from '../classes/signupRequest';
 import { userBikeInfo } from '../interfaces/userBikeInfo';
 import { User } from '../classes/user';
+import { shop } from '../interfaces/shop';
 
 @Injectable({
   providedIn: 'root'
@@ -235,6 +236,23 @@ export class EcobikeApiService {
     return this.httpClient.get<Bicicletta[]>(`${this.url}/adrent/user/` + id + `/bikes`); 
   }
 
+  /**
+   * Restituisce l'elenco degli shops
+  *
+  * Endpoint Rest: shop
+  */
+  public list_shops(): Observable<shop[]> {
+    return this.httpClient.get<shop[]>(`${this.url}/shop`); 
+  }
+
+  /**
+   * Restituisce lo shop
+  *
+  * Endpoint Rest: shop
+  */
+  public get_shop(id: number): Observable<shop> {
+    return this.httpClient.get<shop>(`${this.url}/shop/` + id); 
+  }
 
 }
 
