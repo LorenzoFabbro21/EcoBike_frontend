@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+export interface shop {
+    id?: number,
+    name?: string;
+    city?: string;
+    address?: string;
+    phoneNumber?: string;
+    idUser?: number;
+}
+=======
+export interface Shop {
+ name?: string;
+ city?: string;
+ address?: string;
+ phoneNumber?: string;
+ img?: string
+ idUser?: number;
+}
+>>>>>>> develop

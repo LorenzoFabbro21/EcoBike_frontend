@@ -23,6 +23,8 @@ import { BikesForsaleModule } from './pages/bikes-forsale/bikes-forsale.module';
 import { DettagliBikeToSellModule } from './pages/dettagli-bike-to-sell/dettagli-bike-to-sell.module';
 import { BikesForRentModule } from './pages/bikes-for-rent/bikes-for-rent.module';
 import { DetailsBikeToRentModule } from './pages/details-bike-to-rent/details-bike-to-rent.module';
+import { ShopsModule } from './pages/shops/shops.module';
+import { DetailsShopModule } from './pages/details-shop/details-shop.module';
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { DetailsBikeToRentModule } from './pages/details-bike-to-rent/details-bi
     BikesForsaleModule,
     DettagliBikeToSellModule,
     BikesForRentModule,
-    DetailsBikeToRentModule
+    DetailsBikeToRentModule,
+    ShopsModule,
+    DetailsShopModule
   ],
   providers: [],
   bootstrap: [AppComponent]

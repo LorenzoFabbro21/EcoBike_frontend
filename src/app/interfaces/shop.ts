@@ -1,4 +1,5 @@
-export interface Shop {
+export interface shop {
+ id?: number,
  name?: string;
  city?: string;
  address?: string;
